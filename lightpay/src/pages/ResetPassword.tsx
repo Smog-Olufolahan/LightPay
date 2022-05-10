@@ -4,7 +4,10 @@ import "../../src/pages/ResetPassword.css"
 
 const ResetPassword = () => {
   return (
+    <>
     <div>Hello</div>
+    <p></p>
+    </>
   )
 }
 
