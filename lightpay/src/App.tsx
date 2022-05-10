@@ -1,13 +1,10 @@
-import React from 'react';
-import './App.css';
 import {Routes, Route} from 'react-router-dom'
+import ResetPassword from '../src/pages/ResetPassword';
 
 function App() {
   return (
     <Routes>
-      <Route>
-
-      </Route>
+      <Route path="/" element={<ResetPassword />} />
     </Routes>
   );
 }
