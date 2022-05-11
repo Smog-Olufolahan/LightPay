@@ -1,11 +1,19 @@
-import {Routes, Route} from 'react-router-dom'
-import ResetPassword from '../src/pages/ResetPassword';
-
+import React from 'react';
+import {BrowserRouter as Router,Routes, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Signin from './components/signin';
+import "./components/css/main.css"
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<ResetPassword />} />
-    </Routes>
+    <div>
+      <Signin/>
+      {/* <Router>
+      <Routes>
+      <Route path="/" element={ <Signin/> } />
+      </Routes>
+      </Router> */}
+          </div>
+  
   );
 }
 
