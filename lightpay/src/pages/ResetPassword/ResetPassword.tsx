@@ -1,79 +1,145 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, { ChangeEvent, useState } from "react";
 import Axios from "axios";
+import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import "../../src/pages/ResetPassword.css";
+import "./ResetPassword.css";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const ResetPassword = () => {
-const [formData, setFormData]= useState({
+  const [formData, setFormData] = useState({
     password: "",
-    confirmPassword: ""
-})
+    confirmPassword: "",
+  });
 
-const [passwordShown, setPasswordShown] = useState(false);
-const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
 
-const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
-};
+  };
 
-const togglePasswordVisiblities = () => {
-  setConfirmPasswordShown(confirmPasswordShown ? false : true);
-}
+  const togglePasswordVisiblities = () => {
+    setConfirmPasswordShown(confirmPasswordShown ? false : true);
+  };
 
-const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-const handleSubmit=(e:React.SyntheticEvent)=>{
-e.preventDefault()
-setSubmitted(true)
-console.log(formData)
-Axios.post("http://localhost:3001//auth/reset-password/:resetToken", formData)
-.then(response => {
-	console.log(response.data)
-	localStorage.setItem("userToken", response.data)
-	})
+  const [message, setMessage] = useState("");
 
-};
+  const test = new URLSearchParams(useLocation().search);
 
-return (
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    // console.log(formData);
+    if (formData.password === formData.confirmPassword) {
+      setFormData({
+        password: "",
+        confirmPassword: "",
+      });
+      setSubmitted(true);
+
+      Axios.post(
+        `http://localhost:3001/auth/reset-password/${test.get("resetToken")}`,
+        formData
+      )
+        .then((response) => {
+          console.log(response.data);
+          // localStorage.setItem("userToken", response.data)
+          setMessage("Password updated successfully.");
+        })
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            setMessage(error.response.data);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+            setMessage(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+            setMessage("Error" + error.message);
+          }
+        });
+    } else {
+      console.log("Passwords do not match.");
+      setMessage("Passwords do not match.");
+    }
+  };
+
+  return (
     <div className="container">
-		<div className="wrap-signin">
-      <h1>Reset Password</h1>
-			<form action="#" onSubmit={handleSubmit}  className="signin-form validate-form" >
-				<div className="wrap-input validate-password" data-validate="Please enter password">
-					<label className="password" htmlFor="password">Password</label>
-					<input className="input"
-					name="password"
-					value={formData.password}
-					onChange={(e: ChangeEvent<HTMLInputElement>)=> setFormData({...formData, password: e.target.value})} 
-					 placeholder="Password" 
-					 id="password"
-					 type={passwordShown ? "text" : "password"}
-					 />
-					 <i className="eye" onClick={togglePasswordVisiblity}>{eye}</i>
-				</div>
-        <div className="wrap-input validate-password" data-validate="Please enter password">
-					<label className="password" htmlFor="confirmPassword">Confirm password</label>
-					<input className="input"
-					name="confirmPasswords"
-					value={formData.confirmPassword}
-					onChange={(e: ChangeEvent<HTMLInputElement>)=> setFormData({...formData, confirmPassword: e.target.value})} 
-					 placeholder="confirmPassword" 
-					 id="password"
-					 type={confirmPasswordShown ? "text" : "password"}
-					 />
-					 <i className="eye" onClick={togglePasswordVisiblities}>{eye}</i>
-				</div>
+      <div className="wrap-signin">
+        <h1>Reset Password</h1>
 
-				<button className="signin-btn" type="submit">Reset Password</button>
+        <form
+          action="#"
+          onSubmit={handleSubmit}
+          className="signin-form validate-form"
+        >
+          <div
+            className="wrap-input validate-password"
+            data-validate="Please enter password"
+          >
+            <label className="password" htmlFor="password">
+              New password:
+            </label>
+            <input
+              className="input"
+              name="password"
+              value={formData.password}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              placeholder="Enter new password."
+              id="password"
+              type={passwordShown ? "text" : "password"}
+            />
+            <i className="eye" onClick={togglePasswordVisiblity}>
+              {eye}
+            </i>
+          </div>
 
+          <div
+            className="wrap-input validate-password"
+            data-validate="Please enter password"
+          >
+            <label className="password" htmlFor="confirmPassword">
+              Confirm password:
+            </label>
+            <input
+              className="input"
+              name="confirmPasswords"
+              value={formData.confirmPassword}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setFormData({ ...formData, confirmPassword: e.target.value })
+              }
+              placeholder="Re-enter password."
+              id="passwords"
+              type={confirmPasswordShown ? "text" : "password"}
+            />
+            <i className="eye" onClick={togglePasswordVisiblities}>
+              {eye}
+            </i>
+          </div>
 
-			</form>
+          <button className="signin-btn" type="submit">
+            Reset Password
+          </button>
 
-		</div>
-	</div>
-    );
-}
+          {message.length > 0 ? (
+            <div>
+              <br></br><p style={{textAlign: "center"}}>{message}</p>
+            </div>
+          ) : null}
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default ResetPassword;
