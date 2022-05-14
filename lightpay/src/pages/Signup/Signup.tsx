@@ -4,66 +4,70 @@ import { useState, useEffect } from "react";
 import { FaEye } from "react-icons/fa";
 import { SiGnuprivacyguard } from "react-icons/si";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
 
   const [profile, setProfile] = useState({
     email: "",
     fullname: "",
     mobile: "",
-    password: ""
-  })
- 
-  const handleProfile =(e:ChangeEvent<HTMLInputElement>) => {
-  const {value,name} =e.target
-  setProfile((prevState) =>({...prevState, [name] : value})
-  )
+    password: "",
+  });
 
-  }
+  const handleProfile = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setProfile((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSignin = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    navigate("/signin/");
+  };
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
       let response: any = await axios.post(
-        "http://localhost:3000/auth/register",
+        "http://localhost:3001/auth/register",
         {
-          email:profile.email,
+          email: profile.email,
           fullname: profile.fullname,
           mobile: profile.mobile,
           password: profile.password,
         }
-      ); 
-      
-setSuccessMessage(response.data.message);
-setErrorMessage('')
+      );
 
+      console.log(response.data);
+      setSuccessMessage(response.data.msg);
+      
+      setErrorMessage("");
     } catch (e: any) {
       let error = e.response.data;
 
-     
-        setErrorMessage(e.response.data);
-        setSuccessMessage('')
-        console.log(error);
-
+      setErrorMessage(e.response.data);
+      setSuccessMessage("");
+      console.log(error);
     }
   };
+  
   //password toggle function
   const [state, setState] = useState(true);
 
   const toggleBtn = () => {
     setState((prevState) => !prevState);
   };
-  console.log(errorMessage)
+  console.log(errorMessage);
 
   return (
     <>
       <div className="container2">
         <div className="heading">
           <h2>
-            <SiGnuprivacyguard></SiGnuprivacyguard>Signup
+            <SiGnuprivacyguard></SiGnuprivacyguard>&nbsp;Signup
           </h2>
         </div>
         <div className="form">
@@ -144,20 +148,24 @@ setErrorMessage('')
             {/* submit */}
             <div className="form-group">
               <button type="submit" className="btn-signup">
-                Signup
+                Sign Up
               </button>
             </div>
+
             <div className="form-group">
-              <button type="submit" className="btn-signin">
-                Signin
+              <button type="submit" className="btn-signin" onClick={handleSignin}>
+                Sign In
               </button>
+
+              {successMessage.length > 0 ? (
+                <div className="success-msg"> {successMessage} </div>
+              ) : null}
+
               {errorMessage.length > 0 ? (
                 <div className="error-msg"> {errorMessage} </div>
               ) : null}
-              {successMessage.length > 0 ? (
-                <div className="success-msg"> {successMessage} </div>
-              ): null}
             </div>
+
           </form>
         </div>
       </div>
