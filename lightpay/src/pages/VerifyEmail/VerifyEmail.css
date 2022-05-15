@@ -1,0 +1,13 @@
+* { 
+	box-sizing: border-box;
+}
+
+body, html {
+  background-color: #01051A1A;
+	height: 100%;
+	font-family: Ubuntu-Regular, sans-serif;
+}
+
+.img-container {
+  text-align: center;
+}
