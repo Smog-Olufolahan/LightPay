@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import Axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import "./ResetPassword.css";
@@ -26,8 +26,14 @@ const ResetPassword = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const test = new URLSearchParams(useLocation().search);
+
+  const handleSignin = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    navigate("/signin/");
+  };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -74,7 +80,8 @@ const ResetPassword = () => {
   return (
     <div className="container">
       <div className="wrap-signin">
-        <h1>Reset Password</h1>
+        <h3>Reset Password</h3>
+        <br></br>
 
         <form
           action="#"
@@ -133,9 +140,18 @@ const ResetPassword = () => {
 
           {message.length > 0 ? (
             <div>
-              <br></br><p style={{textAlign: "center"}}>{message}</p>
+              <br></br>
+              <p style={{ textAlign: "center" }}>{message}</p>
             </div>
           ) : null}
+
+          { message === "Password updated successfully." ? (
+            <div>
+              <button className="signin-btn" type="submit" onClick={handleSignin}>
+                Proceed to Sign In
+              </button>
+            </div>
+          ) : null }
         </form>
       </div>
     </div>

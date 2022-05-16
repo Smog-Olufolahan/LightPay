@@ -182,9 +182,7 @@ const Signup = () => {
                   placeholder="Password"
                   onChange={handleProfile}
                 />
-                <button className="togglebtn" onClick={toggleBtn}>
-                  <FaEye></FaEye>
-                </button>
+                  <FaEye className="togglebtn" onClick={toggleBtn}></FaEye>
               </div>
               {errorMessage && !profile.password ? (
                 <>

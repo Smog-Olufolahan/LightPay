@@ -130,7 +130,7 @@
 }
 
 .form-group {
-  width: 100%;
+  width: 320px;
   margin-bottom: 15px;
 }
 
@@ -166,7 +166,7 @@ select {
   width: 100%;
   font-weight: 600;
   background-color: transparent;
-  color: black;
+  color: #01051A;
   padding: 14px 20px;
   border: 1px solid black;
   border-radius: 8px;
@@ -179,7 +179,7 @@ select {
 }
 
 .togglebtn {
-  top: 20px;
+  top: 30px;
   right: 20px;
   position: absolute;
   cursor: pointer;
