@@ -108,7 +108,7 @@
     background-color: #01051a;
     z-index: 10;
     width: 380px;
-    height: 820px;
+    height: 810px;
     padding: 120% 10px 0 10px;
     border-radius: 10px;
     margin-top: -160%;
@@ -123,8 +123,8 @@
   .cancel-icon {
     font-size: 25px;
     position: absolute;
-    margin-top: -116%;
-    margin-left: 78%;
+    margin-top: -117%;
+    margin-left: 80%;
     cursor: pointer;
   }
 }

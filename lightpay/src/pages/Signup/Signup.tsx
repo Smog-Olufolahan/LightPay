@@ -100,7 +100,7 @@ const Signup = () => {
                 </>
               ) : profile.fullname && profile.fullname.length < 3 ? (
                 <>
-                  <p className="form-error">Cannot be less than 3</p>
+                  <p className="form-error">Cannot be less than 3 characters</p>
                   <FontAwesomeIcon
                     className="form-error-icon"
                     icon={solid('circle-exclamation')}
