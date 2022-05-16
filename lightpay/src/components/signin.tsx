@@ -24,7 +24,7 @@ const Signin = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    //setSubmitted(true);
     console.log(formData);
     Axios.post("http://localhost:3001/login", formData)
 		.then((response) => {

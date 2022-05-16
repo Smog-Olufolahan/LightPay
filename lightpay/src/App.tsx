@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
