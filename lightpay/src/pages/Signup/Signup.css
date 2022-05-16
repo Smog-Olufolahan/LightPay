@@ -10,8 +10,8 @@
   height: 100vh;
   border-radius: 10px;
   width: 100%;
-  padding: 10px;
   padding-top: 2rem;
+  padding-left: 10px;
 }
 
 .heading > h2 {
@@ -151,7 +151,7 @@ select {
 }
 
 .btn-signup {
-  width: 100%;
+  width: 300px;
   background-color: #01051a;
   font-weight: 600;
   color: white;
@@ -163,10 +163,10 @@ select {
 }
 
 .btn-signin {
-  width: 100%;
+  width: 300px;
   font-weight: 600;
   background-color: transparent;
-  color: #01051A;
+  color: #01051a;
   padding: 14px 20px;
   border: 1px solid black;
   border-radius: 8px;
@@ -179,8 +179,8 @@ select {
 }
 
 .togglebtn {
-  top: 30px;
-  right: 20px;
+  top: 25px;
+  right: 30px;
   position: absolute;
   cursor: pointer;
   border: none;
