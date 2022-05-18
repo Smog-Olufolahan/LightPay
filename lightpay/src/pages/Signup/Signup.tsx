@@ -175,7 +175,7 @@ const Signup = () => {
               <div id="password-toggle">
                 <input
                   type={state ? 'password' : 'text'}
-                  className="form-control"
+                  className="form-control password-control"
                   id="password"
                   name="password"
                   value={profile.password}
