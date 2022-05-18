@@ -134,10 +134,7 @@
   margin-bottom: 15px;
 }
 
-.form-group input[type='text'],
-input[type='password'],
-input[type='email'],
-select {
+.form-control {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -148,6 +145,10 @@ select {
   background-color: #01051a1a;
   background-color: 1px solid #a3a5ac;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.password-control {
+  padding-right: 50px;
 }
 
 .btn-signup {
@@ -180,7 +181,7 @@ select {
 
 .togglebtn {
   top: 25px;
-  right: 30px;
+  right: 40px;
   position: absolute;
   cursor: pointer;
   border: none;
