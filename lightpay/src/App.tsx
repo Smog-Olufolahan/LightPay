@@ -6,7 +6,7 @@ import Signup from './pages/Signup/Signup';
 import Signin from './components/signin';
 import "./components/css/main.css";
 import Transaction from './pages/Transactions/Transaction';
-
+import GenerateQr from "./pages/generateAddress/qrAddress";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/auth/verify-email" element={<VerifyEmail />} />
       <Route path="/auth/transaction" element={<Transaction />} />
+      <Route path="/generateqr" element={<GenerateQr />} />
     </Routes>
   );
 }
