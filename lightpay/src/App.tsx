@@ -4,6 +4,8 @@ import ResetPassword from './pages/ResetPassword/ResetPassword';
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 import Signup from './pages/Signup/Signup';
 import Signin from './components/signin';
+import AccountsDashboard from './pages/AccountsDashboard/AccountsDashboard';
+import './pages/AccountsDashboard/AccountsDashboard.css'
 import "./components/css/main.css"
 
 
@@ -15,6 +17,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/auth/verify-email" element={<VerifyEmail />} />
+      <Route path="/dashboard" element={<AccountsDashboard />} />
     </Routes>
   );
 }
