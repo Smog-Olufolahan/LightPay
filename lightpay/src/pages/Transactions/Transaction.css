@@ -11,19 +11,23 @@
   display: flex;
   justify-content: flex-end;
   grid-gap: 8px;
-  /* padding-right: 60px; */
+
 }
 .nav-icon-container {
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  gap: 7rem;
+  gap: 10rem;
 }
 .nav a {
   font-weight: 600;
   font-size: 15px;
   padding-top: 50px;
   white-space: nowrap;
+}
+.nav a:hover {
+color: #0fde02;
+transition:1s;
 }
 #nav-icon {
   font-weight: 600;
@@ -41,7 +45,7 @@
   padding: 20px;
   margin-top: 30px;
   border-radius: 10px;
-  box-shadow: 2px 2px 3px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 3px 4px rgba(3, 0, 0, 0.3);
 }
 
 .main h2 {
@@ -69,12 +73,12 @@
 }
 .send:hover {
     background-color:#0d223d;
-    color:#fcfcfc;
+    color:#0fde02;
     transition:1s;
 }
 .receive:hover {
     background-color:#0d223d;
-    color:#fcfcfc;
+    color:#0fde02;
     transition:1s;
 }
 
@@ -97,14 +101,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.transaction-description {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 70px;
 }
 
 @media only screen and (min-width: 992px) {
@@ -138,4 +134,5 @@
   .send-receive-icon {
     margin-top: 50px;
   }
+
 }
