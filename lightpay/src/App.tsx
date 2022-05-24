@@ -5,7 +5,7 @@ import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 import Signup from './pages/Signup/Signup';
 import Signin from './components/signin';
 import AccountsDashboard from './pages/AccountsDashboard/AccountsDashboard';
-import './pages/AccountsDashboard/AccountsDashboard.css'
+
 import "./components/css/main.css"
 
 

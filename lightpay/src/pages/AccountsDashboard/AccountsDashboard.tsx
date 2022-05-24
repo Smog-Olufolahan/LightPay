@@ -39,7 +39,7 @@ const AccountsDashboard = () => {
   console.log(filteredCoin);
 
   return (
-    <div className="container">
+    <div className="acc-container">
       <div className="collective">
         <img src="/images/user-icon.webp" alt="" />
 
