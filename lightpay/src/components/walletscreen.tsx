@@ -39,18 +39,18 @@ const url = "http://localhost:3001/userwallet"
     
     return (
         <div className="wallet-screen-container">
-            <div className="container">
+            <div className="container-wallet">
                 <div className="wrap-wallet-screen">
                     <div className="add">
                     <i> {add} </i>
                     <span className="add-wallet">Add Wallet</span>
                     </div>
 
-                   <span className="wallet-title">Walllets</span>
+                   <span className="wallet-title">Wallets</span>
 
                     <div className="wrap-input" data-validate="enter wallet address">
                         <i className="search"> {search} </i>
-                        <input className="input" type="text" name="search-wallet" value="" placeholder="Search wallet" id="wallet"/>
+                        <input className="input-wallet" type="text" name="search-wallet" value="" placeholder="Search wallet" id="wallet"/>
                     </div>
         
                     <div className= "wrap-wallet-currency">

@@ -6,7 +6,7 @@
   padding: 20px 0 39px 0;
 }
 
-.container {
+.container-signin {
   width: 360px;
   height: 90vh;
   margin-top: 20px;
@@ -58,7 +58,7 @@
   z-index: 1;
 }
 
-.input {
+.input-signin {
   font-size: 14px;
   font-weight: normal;
   border-radius: 10px;
