@@ -13,7 +13,7 @@ const AccountsDashboard = () => {
   useEffect(() => {
     console.log("it is working");
 
-    Axios.get("https://api.coinstats.app/public/v1/coins?skip=0&limit=23").then(
+    Axios.get("https://api.coinstats.app/public/v1/coins?skip=0&limit=0").then(
       (response) => {
         // console.log(response.data.coins);
         setCoinList(response.data.coins);
