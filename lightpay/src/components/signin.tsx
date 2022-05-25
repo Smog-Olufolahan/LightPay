@@ -83,83 +83,83 @@ const Signin = () => {
   };
 
   return (
-    <div className="signin-form-container">
-      <div className="container">
-        <div className="wrap-signin">
-          <form
-            action="#"
-            onSubmit={handleSubmit}
-            className="signin-form validate-form"
-          >
-            <span className="signin-form-title">Sign In</span>
+  <div className="signin-form-container">
+  <div className="container">
+    <div className="wrap-signin">
+      <form
+        action="#"
+        onSubmit={handleSubmit}
+        className="signin-form validate-form"
+      >
+        <span className="signin-form-title">Sign In</span>
 
-            <div
-              className="wrap-input validate-email"
-              data-validate="Please enter email-address"
-            >
-              <label className="email" htmlFor="email">
-                Email Address
-              </label>
-              <input
-                className="input"
-                type="text"
-                name="email"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                value={formData.email}
-                placeholder="Email Address"
-                id="email-address"
-              />
-            </div>
-            <div
-              className="wrap-input validate-password"
-              data-validate="Please enter password"
-            >
-              <label className="password" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="input"
-                name="password"
-                value={formData.password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
-                placeholder="Password"
-                id="password"
-                type={passwordShown ? 'text' : 'password'}
-              />
-              <i className="eye" onClick={togglePasswordVisiblity}>
-                {eye}
-              </i>
-            </div>
-
-            <div className="text-right">
-              <a href="forgot-password" onClick={handleForgetPassword}>
-                Forgot Password?
-              </a>
-            </div>
-
-            <button className="signin-btn" type="submit">
-              Sign In
-            </button>
-
-            <button className="signup-btn" onClick={handleSignup}>
-              Sign Up
-            </button>
-
-            {message.length > 0 ? (
-              <div>
-                <br></br>
-                <p style={{ textAlign: 'center' }}>{message}</p>
-              </div>
-            ) : null}
-          </form>
+        <div
+          className="wrap-input validate-email"
+          data-validate="Please enter email-address"
+        >
+          <label className="email" htmlFor="email">
+            Email Address
+          </label>
+          <input
+            className="input"
+            type="text"
+            name="email"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            value={formData.email}
+            placeholder="Email Address"
+            id="email-address"
+          />
         </div>
-      </div>
+        <div
+          className="wrap-input validate-password"
+          data-validate="Please enter password"
+        >
+          <label className="password" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="input"
+            name="password"
+            value={formData.password}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            placeholder="Password"
+            id="password"
+            type={passwordShown ? 'text' : 'password'}
+          />
+          <i className="eye" onClick={togglePasswordVisiblity}>
+            {eye}
+          </i>
+        </div>
+
+        <div className="text-right">
+          <a href="forgot-password" onClick={handleForgetPassword}>
+            Forgot Password?
+          </a>
+        </div>
+
+        <button className="signin-btn" type="submit">
+          Sign In
+        </button>
+
+        <button className="signup-btn" onClick={handleSignup}>
+          Sign Up
+        </button>
+
+        {message.length > 0 ? (
+          <div>
+            <br></br>
+            <p style={{ textAlign: 'center' }}>{message}</p>
+          </div>
+        ) : null}
+      </form>
     </div>
-  );
+  </div>
+</div>
+);
 };
 
 export default Signin;
