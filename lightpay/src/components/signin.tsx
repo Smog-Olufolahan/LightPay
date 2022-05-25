@@ -30,8 +30,10 @@ const Signin = () => {
     Axios.post('http://localhost:3001/login', formData)
       .then((response) => {
         console.log(response.data);
-        localStorage.setItem('userToken', response.data);
+        const token = response.data.token;
+        localStorage.setItem("userToken", JSON.stringify(token));
         setMessage(response.data.msg);
+        navigate("/dashboard/");
       })
       .catch(function (error) {
         if (error.response) {
