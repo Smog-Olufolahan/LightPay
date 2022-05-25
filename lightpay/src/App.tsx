@@ -7,6 +7,8 @@ import Signin from './components/signin';
 import AccountsDashboard from './pages/AccountsDashboard/AccountsDashboard';
 import "./components/css/main.css";
 import Transaction from './pages/Transactions/Transaction';
+import Walletscreen from './components/walletscreen';
+
 import GenerateQr from "./pages/generateAddress/qrAddress";
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
       <Route path="/auth/verify-email" element={<VerifyEmail />} />
       <Route path="/dashboard" element={<AccountsDashboard />} />
       <Route path="/auth/transaction" element={<Transaction />} />
+      <Route path="/walletscreen" element={<Walletscreen/>} />
       <Route path="/generateqr" element={<GenerateQr />} />
     </Routes>
   );
