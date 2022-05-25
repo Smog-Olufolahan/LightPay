@@ -84,7 +84,7 @@ const Signin = () => {
 
   return (
   <div className="signin-form-container">
-  <div className="container-sigin">
+  <div className="container-signin">
     <div className="wrap-signin">
       <form
         action="#"
@@ -94,7 +94,7 @@ const Signin = () => {
         <span className="signin-form-title">Sign In</span>
 
         <div
-          className="wrap-input validate-email"
+          className="wrap-input-signin validate-email"
           data-validate="Please enter email-address"
         >
           <label className="email" htmlFor="email">
@@ -113,14 +113,14 @@ const Signin = () => {
           />
         </div>
         <div
-          className="wrap-input validate-password"
+          className="wrap-input-signin validate-password"
           data-validate="Please enter password"
         >
           <label className="password" htmlFor="password">
             Password
           </label>
           <input
-            className="input-sigin"
+            className="input-signin"
             name="password"
             value={formData.password}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>

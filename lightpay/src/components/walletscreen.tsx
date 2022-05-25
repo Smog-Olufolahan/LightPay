@@ -48,7 +48,7 @@ const url = "http://localhost:3001/userwallet"
 
                    <span className="wallet-title">Wallets</span>
 
-                    <div className="wrap-input" data-validate="enter wallet address">
+                    <div className="wrap-input-wallet" data-validate="enter wallet address">
                         <i className="search"> {search} </i>
                         <input className="input-wallet" type="text" name="search-wallet" value="" placeholder="Search wallet" id="wallet"/>
                     </div>
