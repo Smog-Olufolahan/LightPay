@@ -86,7 +86,7 @@ const Signin = () => {
 
   return (
   <div className="signin-form-container">
-  <div className="container">
+  <div className="container-sigin">
     <div className="wrap-signin">
       <form
         action="#"
@@ -103,7 +103,7 @@ const Signin = () => {
             Email Address
           </label>
           <input
-            className="input"
+            className="input-signin"
             type="text"
             name="email"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -122,7 +122,7 @@ const Signin = () => {
             Password
           </label>
           <input
-            className="input"
+            className="input-sigin"
             name="password"
             value={formData.password}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>

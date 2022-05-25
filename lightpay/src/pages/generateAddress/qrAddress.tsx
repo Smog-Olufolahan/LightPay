@@ -7,7 +7,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 
 function GenerateQr() {
-  const [qrValue, setQrValue] = useState([]);
+  const [qrValue, setQrValue] = useState([] as any);
   const handleOnChange = (event: any) => {
     const { value } = event.target;
     setQrValue(value);
