@@ -78,7 +78,7 @@ img {
 
 .exchange-rates h4 {
   margin-left: -5px;
-  margin-top: 140px;
+  margin-top: 90px;
   color: #4E515F;
   font-family: 'Outfit', sans-serif;
   font-weight: 600;
@@ -139,6 +139,9 @@ img {
   /* margin-bottom: -35px; */
   margin-top: -327px;
 }
+.home p:hover {
+  color: red;
+}
 .home:hover {
   cursor: pointer;
 }
@@ -156,6 +159,9 @@ img {
   margin-top: -327px;
   margin-left: 25px;
   color: #A3A5AC;
+}
+.transaction p:hover {
+  color: red;
 }
 .transaction:hover {
   cursor: pointer;
@@ -175,6 +181,9 @@ img {
   margin-left: 29px;
   color: #A3A5AC;
 }
+.gift p:hover {
+  color: red;
+}
 .gift:hover {
   cursor: pointer;
 }
@@ -189,9 +198,12 @@ img {
   font-size: x-small;
   font-family: 'Outfit', sans-serif;
   /* margin-bottom: -40px; */
-  margin-top: -290px;
+  margin-top: -293px;
   margin-left: 37px;
   color: #A3A5AC;
+}
+.wallet p:hover {
+  color: red;
 }
 .wallet:hover {
   cursor: pointer;
@@ -212,4 +224,15 @@ img {
   background-color: #fff;
   border: 1px solid #00000029;
 }
+}
+
+.dash-footer {
+  position: absolute;
+  bottom: -50;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  left: 0;
+  padding: 0px 40px;
+  margin-top: 15px;
 }
