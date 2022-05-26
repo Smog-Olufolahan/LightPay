@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import { IconContext } from "react-icons";
-import { RiHome7Fill } from "react-icons/ri";
 import { FaGift } from "react-icons/fa";
+import { RiHome7Fill, RiWallet3Fill } from "react-icons/ri";
 import { GrTransaction } from "react-icons/gr";
-import { RiWallet3Fill } from "react-icons/ri";
 import './AccountsDashboard.css';
 
 const AccountsDashboard = () => {
   const [coinList, setCoinList] = useState<any[]>([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log("it is working");
 
     Axios.get("https://api.coinstats.app/public/v1/coins?skip=0&limit=0").then(
       (response) => {
@@ -29,14 +30,14 @@ const AccountsDashboard = () => {
     if (coin.id === "ethereum") {
       filteredCoin.push(coin);
     }
+    if (coin.id === "binance-coin") {
+      filteredCoin.push(coin);
+    }
     if (coin.id === "bitcoin-cash") {
       filteredCoin.push(coin);
     }
-    if (coin.id === "ripple") {
-      filteredCoin.push(coin);
-    }
   }
-  console.log(filteredCoin);
+  // console.log(filteredCoin);
 
   return (
     <div className="acc-container">
@@ -57,6 +58,7 @@ const AccountsDashboard = () => {
           </div>
         </div>
       </div>
+
       <div className="exchange-rates">
         <h4>Exchange Rates</h4>
         {filteredCoin.map((coin) => {
@@ -77,7 +79,7 @@ const AccountsDashboard = () => {
             </>
           );
         })}
-        <footer className="foot">
+        <footer className="dash-footer">
           <div className="home">
             <IconContext.Provider value={{ className: "home1" }}>
               <RiHome7Fill />
@@ -96,7 +98,7 @@ const AccountsDashboard = () => {
             </IconContext.Provider>
             <p>Gift Cards</p>
           </div>
-          <div className="wallet">
+          <div className="wallet" onClick={() => navigate("/walletscreen/")}>
             <IconContext.Provider value={{ className: "wallet1" }}>
               <RiWallet3Fill />
             </IconContext.Provider>

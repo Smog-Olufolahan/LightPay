@@ -75,7 +75,7 @@ function GenerateQr() {
           <h3 className={styles.text}><strong>Wallet Address</strong></h3>
           <div className={styles.inputContainer}>
             <IoCopyOutline className={styles.icon} />
-            <div className={styles.input}> <input onChange={handleOnChange} value={qrValue} className={styles.icon} /></div>
+            <div className={styles.input}> <input onChange={handleOnChange} disabled={true} value={qrValue} className={styles.icon} /></div>
           </div>
           <div className={styles.qrContains}>
             <QRcode
