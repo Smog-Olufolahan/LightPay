@@ -2,31 +2,45 @@
   box-sizing: border-box;
 }
 
+.container1 {
+  padding-top: 20px;
+}
+
 .container2 {
+  margin: auto;
+  margin-top: 20px;
   background-color: #fff;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  border-radius: 10px;
-  width: 100%;
-  padding-top: 2rem;
+  width: 360px;
+  height: 760px;
+  border: 1px solid rgb(143, 143, 143);
+  /* padding-top: 2rem; */
   padding-left: 10px;
 }
 
 .heading > h2 {
-  margin-bottom: 2rem;
-  font-weight: 600;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: #4e515f;
 }
 
 .label {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .error-msg {
-  font-size: 13px;
+  font-size: 12px;
   color: red;
-  max-width: 300px;
+  max-width: 312px;
   min-height: 50px;
   background-color: #01051a1a;
   padding: 10px;
@@ -38,12 +52,12 @@
   color: #ff0000;
   margin-top: 10px;
   padding-right: 10px;
-  font-size: 13px;
+  font-size: 12px;
   text-align: left;
 }
 .form-error {
   color: #ff0000;
-  font-size: 13px;
+  font-size: 12px;
   max-width: 100%;
   position: relative;
 }
@@ -76,7 +90,7 @@
   background-color: #01051a;
   z-index: 10;
   width: 360px;
-  height: 740px;
+  height: 760px;
   padding: 27% 10px 0 10px;
   border-radius: 10px;
   margin-top: -43%;
@@ -135,12 +149,12 @@
 }
 
 .form-control {
-  width: 300px;
+  width: 312px;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #a3a5ac;
-  border-radius: 9px;
+  border-radius: 10px;
   box-sizing: border-box;
   background-color: #01051a1a;
   background-color: 1px solid #a3a5ac;
@@ -152,7 +166,7 @@
 }
 
 .btn-signup {
-  width: 300px;
+  width: 312px;
   background-color: #01051a;
   font-weight: 600;
   color: white;
@@ -164,7 +178,7 @@
 }
 
 .btn-signin {
-  width: 300px;
+  width: 312px;
   font-weight: 600;
   background-color: transparent;
   color: #01051a;
@@ -195,7 +209,7 @@
 .policy {
   margin-top: 10px;
   text-align: center;
-  width: 300px;
+  width: 312px;
   font-size: 12px;
 }
 

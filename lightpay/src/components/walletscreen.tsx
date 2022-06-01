@@ -67,7 +67,7 @@ const Walletscreen = () => {
 
   const filteredCoin: any[] = [];
   for (let coin of coinList) {
-    if (coin.id === "ethereum") {
+    if (coin.id === "ethereum" || coin.id === "bitcoin") {
       filteredCoin.push(coin);
     }
   }

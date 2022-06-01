@@ -49,11 +49,11 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-verify">
       <div className="wrap-signin">
 
           { message === "Account verified successfully." ? (
-            <div className="img-container">
+            <div className="img-container-verify">
               <br></br>
               <img src={verifyGif} alt="Account verified icon" />
               <br></br>

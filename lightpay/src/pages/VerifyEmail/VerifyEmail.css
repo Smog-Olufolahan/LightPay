@@ -3,11 +3,30 @@
 }
 
 body, html {
+	margin: auto;
   background-color: #01051A1A;
 	height: 100%;
-	font-family: Ubuntu-Regular, sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
-.img-container {
+.img-container-verify {
+	margin: auto;
   text-align: center;
+	margin: auto;
+  width: 360px;
+  height: 90vh;
+}
+
+.container-verify {
+	margin: auto;
+  width: 360px;
+  height: 90vh;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  opacity: 100%;
+  background-color: #fff;
+  border: 1px solid rgb(143, 143, 143);
 }
