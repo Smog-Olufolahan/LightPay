@@ -78,18 +78,18 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="container">
-      <div className="wrap-signin">
-        <h3>Reset Password</h3>
+    <div className="container-reset">
+      <div className="heading">
+        <h2>Reset Password</h2>
         <br></br>
 
         <form
           action="#"
           onSubmit={handleSubmit}
-          className="signin-form validate-form"
+          className="reset-form validate-form"
         >
           <div
-            className="wrap-input validate-password"
+            className="wrap-reset validate-password"
             data-validate="Please enter password"
           >
             <label className="password" htmlFor="password">

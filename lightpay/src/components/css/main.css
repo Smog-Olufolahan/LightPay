@@ -7,9 +7,9 @@
 }
 
 .container-signin {
+  margin: auto;
   width: 360px;
-  height: 90vh;
-  margin-top: 20px;
+  height: 760px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -48,7 +48,7 @@
   top: 0;
   left: 0;
   color: #4e515f;
-  padding-top: 50px;
+  padding-top: 60px;
   padding-bottom: 39px;
 }
 
@@ -59,12 +59,12 @@
 }
 
 .input-signin {
-  font-size: 14px;
-  font-weight: normal;
+  /* font-size: 14px; */
+  /* font-weight: normal; */
   border-radius: 10px;
-  padding: 10px;
-  margin: 5px 0 5px 3px;
-  width: 100%;
+  padding: 12px;
+  margin: 8px 0 8px 3px;
+  width: 312px;
   border: 1px solid #01051a1a;
   outline: none;
   background-color: #01051a1a;
@@ -76,7 +76,7 @@
 .eye {
   position: absolute;
   margin-left: 90%;
-  margin-top: -40px;
+  margin-top: -45px;
 }
 
 .text-right {
@@ -88,12 +88,13 @@
 a {
   text-decoration: none;
   color: #01051a;
+  padding-right: 6px;
 }
 
 .signin-btn {
   font-weight: bold;
   color: #fff;
-  width: 100%;
+  width: 312px;
   display: flex;
   justify-content: center;
   line-height: 1.8;
@@ -110,7 +111,7 @@ a {
 .signup-btn {
   font-weight: bold;
   color: #01051a;
-  width: 100%;
+  width: 312px;
   padding: 10px;
   border-radius: 10px;
   border: 2px solid #01051a;
@@ -124,7 +125,7 @@ a {
 @media only screen and (max-width: 600px) {
   .container {
     width: 360px;
-    height: 90vh;
+    height: 760px;
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;

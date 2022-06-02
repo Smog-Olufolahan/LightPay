@@ -92,7 +92,7 @@ const Signup = () => {
               />
               {errorMessage && !profile.fullname ? (
                 <>
-                  <p className="form-error">Fullname cannot be empty</p>
+                  <p className="form-error">Enter a valid name</p>
                   <FontAwesomeIcon
                     className="form-error-icon"
                     icon={solid('circle-exclamation')}
@@ -125,7 +125,7 @@ const Signup = () => {
               />
               {errorMessage && !profile.email ? (
                 <>
-                  <p className="form-error">Email cannot be empty</p>
+                  <p className="form-error">Enter a valid email address</p>
                   <FontAwesomeIcon
                     className="form-error-icon"
                     icon={solid('circle-exclamation')}
@@ -150,7 +150,7 @@ const Signup = () => {
               />
               {errorMessage && !profile.mobile ? (
                 <>
-                  <p className="form-error">mobile cannot be empty</p>
+                  <p className="form-error">Enter a valid phone number</p>
                   <FontAwesomeIcon
                     className="form-error-icon"
                     icon={solid('circle-exclamation')}
@@ -158,7 +158,7 @@ const Signup = () => {
                 </>
               ) : profile.mobile && profile.mobile.match(/[A-Za-z]/g) ? (
                 <>
-                  <p className="form-error">Please enter a valid number</p>
+                  <p className="form-error">Enter a valid phone number</p>
                   <FontAwesomeIcon
                     className="form-error-icon"
                     icon={solid('circle-exclamation')}
@@ -248,8 +248,8 @@ const Signup = () => {
               ) : null}
               <p className="policy">
                 By signing up, you agree to our{' '}
-                <a href="http://">Terms & Conditions</a> and our{' '}
-                <a href="http://">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a> and our{' '}
+                <a href="#">Privacy Policy</a>
               </p>
             </div>
           </form>

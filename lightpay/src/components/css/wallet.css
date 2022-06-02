@@ -7,6 +7,7 @@
   }
   
   .container-wallet {
+    margin: auto;
     width: 360px;
     height: 90vh;
     margin-top: 20px;
