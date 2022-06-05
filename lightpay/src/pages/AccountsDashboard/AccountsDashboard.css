@@ -1,11 +1,15 @@
+.container1 {
+  padding-top: 0.5px;
+}
+
 .acc-container {
-  width: 330px;
-  height: 83vh;
-  margin-left: 38%;
-  margin-top: 40px;
+  width: 360px;
+  height: 760px;
+  margin: auto;
+  margin-top: 20px;
+  /* margin-left: 38%; */
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
   justify-content: center;
   padding: 20px;
   opacity: 100%;
@@ -16,22 +20,40 @@
 .collective {
   display: flex;
   flex-direction: column;
+  /* width: 312px; */
+  margin-left: 10px;
 }
 
 img {
-  width: 33px;
+  width: 35px;
   height: 35px;
-  margin-left: 5px;
   margin-bottom: 50px;
 }
 
+.user p {
+  margin-left: 40px;
+  margin-top: -78px;
+  font-family: "Outfit", sans-serif;
+  color: #01051a;
+  font-size: 10pt;
+}
+
 .show-balance {
-  background-color: black;
+  background-color: #01051a;
   height: 140px;
-  width: 300px;
+  width: 312px;
   margin-top: -35px;
   margin-right: 1px;
   border-radius: 10px;
+}
+
+.balance {
+  margin-top: -10px;
+  font-family: "Outfit", sans-serif;
+  color: #fff;
+  text-align: center;
+  font-size: 24pt;
+  font-weight: 600;
 }
 
 .total {
@@ -42,16 +64,16 @@ img {
   align-items: center;
   margin-top: 30px;
   font-size: small;
+  font-weight: bold;
 }
 
 .connect-account {
   height: 80px;
-  width: 300px;
-  background-color: #4E515F;
-  margin-top: 120px;
+  width: 312px;
+  background-color: #4e515f;
+  margin-top: 60px;
   border-radius: 10px;
 }
-
 
 .connect-account img {
   width: 12%;
@@ -67,6 +89,7 @@ img {
   /* color: white; */
 }
 .second {
+  margin-top: -10px;
   font-size: x-small;
 }
 
@@ -74,19 +97,37 @@ img {
   margin-top: -100px;
   margin-left: 60px;
   color: white;
+  padding: 5px 0;
 }
 
-.exchange-rates h4 {
-  margin-left: -5px;
-  margin-top: 90px;
-  color: #4E515F;
+.exchange {
+  margin-top: 120px;
+  color: white;
+  /* width: 312px; */
+  /* padding: 5px 0; */
+  /* height: 370px; */
+}
+
+.exchange h4 {
+  /* margin-top: 125px; */
+  margin-left: 8px;
+  margin-bottom: 14px;
+  color: #4e515f;
   /* font-family: 'Outfit', sans-serif; */
+  font-size: 18px;
   font-weight: 600;
+}
+
+.exchange-rates {
+  overflow-y: scroll;
+  height: 330px;
+  /* background-color: #f1f1f1; */
 }
 
 .coins {
   display: flex;
   margin-bottom: -40px;
+  padding: 0 10px;
 }
 
 .coins img {
@@ -98,25 +139,27 @@ img {
 .eth h6 {
   margin-left: -145px;
   margin-top: 13px;
-  font-family: 'Outfit', sans-serif;
-  color: #01051A;
-  font-size: 10pt;
+  font-family: "Outfit", sans-serif;
+  color: #01051a;
+  font-size: 11pt;
 }
 
-.symbol h6{
+.symbol h6 {
   /* margin-bottom: -102px; */
-  color: #A3A5AC;
+  color: #a3a5ac;
   margin-left: -145px;
   margin-top: 32px;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
+  font-size: 9pt;
 }
 
 .price h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: small;
-  color: #4E515F;
+  color: #4e515f;
   margin-top: 14px;
-  margin-left: 34px;
+  margin-left: 50px;
+  font-weight: 600;
 }
 
 .foot {
@@ -134,10 +177,10 @@ img {
 }
 .home p {
   font-size: x-small;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   margin-left: -13px;
   /* margin-bottom: -35px; */
-  margin-top: -327px;
+  margin-top: -323px;
 }
 .home p:hover {
   color: red;
@@ -154,11 +197,11 @@ img {
 }
 .transaction p {
   font-size: x-small;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   /* margin-bottom: -127px; */
-  margin-top: -327px;
+  margin-top: -322px;
   margin-left: 25px;
-  color: #A3A5AC;
+  color: #a3a5ac;
 }
 .transaction p:hover {
   color: red;
@@ -175,11 +218,11 @@ img {
 }
 .gift p {
   font-size: x-small;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   /* margin-bottom: -201px; */
-  margin-top: -327px;
+  margin-top: -322px;
   margin-left: 29px;
-  color: #A3A5AC;
+  color: #a3a5ac;
 }
 .gift p:hover {
   color: red;
@@ -196,11 +239,11 @@ img {
 }
 .wallet p {
   font-size: x-small;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   /* margin-bottom: -40px; */
-  margin-top: -293px;
+  margin-top: -289px;
   margin-left: 37px;
-  color: #A3A5AC;
+  color: #a3a5ac;
 }
 .wallet p:hover {
   color: red;
@@ -209,30 +252,29 @@ img {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
-.acc-container {
-  width: 330px;
-  height: 96vh;
-  margin-left: 38%;
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  justify-content: center;
-  padding: 20px;
-  opacity: 100%;
-  background-color: #fff;
-  border: 1px solid #00000029;
-}
-}
-
 .dash-footer {
   position: absolute;
-  bottom: -50;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  left: 0;
-  padding: 0px 40px;
-  margin-top: 15px;
+  width: 295px;
+  margin-left: 12px;
+  margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .acc-container {
+    width: 360px;
+    height: 760px;
+    margin: auto;
+    margin-top: 20px;
+    /* margin-left: 38%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    opacity: 100%;
+    background-color: #fff;
+    border: 1px solid #00000029;
+  }
 }

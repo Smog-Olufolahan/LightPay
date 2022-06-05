@@ -3,7 +3,7 @@
 }
 
 .container1 {
-  padding-top: 20px;
+  padding-top: 0.5px;
 }
 
 .container2 {
@@ -150,7 +150,7 @@
 
 .form-control {
   width: 312px;
-  padding: 12px 20px;
+  padding: 12px;
   margin: 2px 0;
   display: inline-block;
   border: 1px solid #a3a5ac;

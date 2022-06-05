@@ -3,10 +3,13 @@
   padding: 0;
   margin: 0;
 }
+
 .contain {
-  background-color: #fcfcfc;
-  height: 100vh;
+  /* background-color: #fcfcfc;
+  height: 100vh; */
+  padding-top: 0.5px;
 }
+
 .nav {
   display: flex;
   justify-content: flex-end;
@@ -33,6 +36,7 @@ transition:1s;
   font-weight: 600;
   font-size: 20px;
 }
+
 .main {
   background: #0d223d;
   display: flex;
@@ -40,19 +44,19 @@ transition:1s;
   color: #fff;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
+  width: 90%;
   margin: auto;
   padding: 20px;
   margin-top: 30px;
   border-radius: 10px;
-  box-shadow: 2px 2px 3px 4px rgba(3, 0, 0, 0.3);
+  /* box-shadow: 2px 2px 3px 4px rgba(3, 0, 0, 0.3); */
 }
 
 .main h2 {
   font-weight: 900;
   font-size: 2rem;
 }
-.main #btc {
+.main #eth {
   display: flex;
   gap: 5px;
 }
@@ -84,10 +88,10 @@ transition:1s;
 
 .send-receive-icon {
   display: flex;
+  gap: 30px;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  gap: 30px;
+  /* margin-top: 30px; */
 }
 
 .send-icon-and-title,

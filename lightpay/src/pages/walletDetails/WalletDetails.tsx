@@ -14,7 +14,7 @@ const WalletDetails = () => {
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("userToken") as string);
-    const url = "http://localhost:3001/userwallet";
+    const url = "http://localhost:3001/wallets/userwallet";
 
     const getUserWallet = async () => {
       try {
@@ -26,7 +26,7 @@ const WalletDetails = () => {
         const json = await response.data[0].address;
         console.log(response.data);
         setUserWallet(response.data);
-        setCoinName(response.data[0].coin);
+        setCoinName(response.data[1].coin);
       } catch (error) {
         console.log(error);
       }
@@ -45,14 +45,15 @@ const WalletDetails = () => {
               <label>From</label>
 
               <div className="from_container">
+                {/* if eth/btc is selected, SiEthereum/SiBitcoin */}
                 <SiEthereum style={style}></SiEthereum>
-                <p>{coinName}</p>
+                {/* <p>{coinName}</p> */}
                 <select className="select">
                   {userWallet.map((wallet: any, i) => {
                     return (
                       <option key={i}>
                         {" "}
-                        {wallet.address}
+                        {wallet.coin + " " + wallet.address}
                       </option>
                     );
                   })}

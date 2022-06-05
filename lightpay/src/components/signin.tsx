@@ -18,7 +18,7 @@ const Signin = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
 
   const [message, setMessage] = useState("");
 
@@ -30,18 +30,22 @@ const Signin = () => {
     console.log(formData);
     Axios.post("http://localhost:3001/login", formData)
       .then((response) => {
-        setMessage(response.data.msg);
+        setMessage(response.data.message);
         console.log(response.data);
         const token = response.data.token;
         localStorage.setItem("userToken", JSON.stringify(token));
-        response.data.msg === "Login successful." ? navigate("/dashboard/") : console.log("errpr");
+        response.data.message === "Login successful." ? navigate("/dashboard/", {
+          state: {
+            username: response.data.fullname
+          }
+      }) : console.log("Invalid credentials.");
       })
       .catch(function (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
           console.log(error.response.data);
-          setMessage(error.response.data.msg);
+          setMessage(error.response.data.message);
         } else if (error.request) {
           // The request was made but no response was received
           console.log(error.request);

@@ -9,8 +9,8 @@ import "./components/css/main.css";
 import Transaction from './pages/Transactions/Transaction';
 import { Modal } from './pages/Transactions/TransactionDetails';
 import Walletscreen from './components/walletscreen';
-
 import GenerateQr from "./pages/generateAddress/qrAddress";
+import WalletDetails from './pages/walletDetails/WalletDetails';
 
 function App() {
   // const [showModal, setShowModal] = useState(false);
@@ -30,6 +30,7 @@ function App() {
       <Route path="/walletscreen" element={<Walletscreen/>} />
       <Route path="/generateqr" element={<GenerateQr />} />
       <Route path="/trans-deets" element={<Modal />} />
+      <Route path="/send" element={<WalletDetails />} />
     </Routes>
   );
 }
