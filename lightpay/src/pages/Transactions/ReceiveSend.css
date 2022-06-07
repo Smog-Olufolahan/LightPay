@@ -3,14 +3,38 @@
   padding: 0;
   margin: 0;
 }
-.contain {
-  background-color: #fcfcfc;
-  height: 100vh;
+
+.sr-container1 {
+  padding-top: 0.5px;
 }
+
+.sr-container2 {
+  width: 360px;
+  height: 760px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  opacity: 100%;
+  background-color: #fff;
+}
+
+.wrap-sr-container {
+  width: 360px;
+  background: #fff;
+}
+
+.contain {
+  padding-top: 0.5px;
+}
+
+
+
 .nav {
   display: flex;
   justify-content: flex-end;
-  grid-gap: 8px;
+  /* grid-gap: 8px; */
 
 }
 .nav-icon-container {
@@ -29,10 +53,13 @@
 color: #0fde02;
 transition:1s;
 }
+
 #nav-icon {
+  margin-top: -15px;
   font-weight: 600;
   font-size: 20px;
 }
+
 .main {
   background: #0d223d;
   display: flex;
@@ -40,19 +67,19 @@ transition:1s;
   color: #fff;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
+  width: 90%;
   margin: auto;
   padding: 20px;
   margin-top: 30px;
   border-radius: 10px;
-  box-shadow: 2px 2px 3px 4px rgba(3, 0, 0, 0.3);
+  /* box-shadow: 2px 2px 3px 4px rgba(3, 0, 0, 0.3); */
 }
 
 .main h2 {
   font-weight: 900;
   font-size: 2rem;
 }
-.main #btc {
+.main #eth {
   display: flex;
   gap: 5px;
 }
@@ -84,10 +111,10 @@ transition:1s;
 
 .send-receive-icon {
   display: flex;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  gap: 30px;
 }
 
 .send-icon-and-title,
@@ -103,7 +130,7 @@ transition:1s;
   align-items: center;
 }
 
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
   .main {
     display: flex;
     flex-direction: column;
@@ -135,4 +162,4 @@ transition:1s;
     margin-top: 50px;
   }
 
-}
+} */

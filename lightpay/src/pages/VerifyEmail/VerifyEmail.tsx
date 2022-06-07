@@ -28,14 +28,14 @@ const VerifyEmail = () => {
     )
       .then((response) => {
         console.log(response.data);
-        setMessage(response.data.msg);
+        setMessage(response.data.message);
       })
       .catch(function (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
           console.log(error.response.data);
-          setMessage(error.response.data.msg);
+          setMessage(error.response.data.message);
         } else if (error.request) {
           // The request was made but no response was received
           console.log(error.request);
@@ -55,7 +55,7 @@ const VerifyEmail = () => {
           { message === "Account verified successfully." ? (
             <div className="img-container-verify">
               <br></br>
-              <img src={verifyGif} alt="Account verified icon" />
+              <div><img src={verifyGif} alt="Account verified icon" /></div>
               <br></br>
               <br></br>
               <p>{message}</p>
@@ -70,9 +70,10 @@ const VerifyEmail = () => {
           ) : null }
 
           { message === "Invalid verification link." ? (
-            <div className="img-container">
+            <div className="img-container-verify">
               <br></br>
-              <img src={errorGif} alt="Error occured icon"/>
+              <img src={verifyGif} alt="Error occured icon"/>
+              <hr></hr>
               <br></br>
               <br></br>
               <p>{message}</p>

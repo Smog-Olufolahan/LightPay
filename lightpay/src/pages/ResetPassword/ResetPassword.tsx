@@ -78,83 +78,89 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="container-reset">
-      <div className="heading">
-        <h2>Reset Password</h2>
-        <br></br>
+    <section className="container-reset-main">
+      <div className="container-reset">
+        <div className="heading">
+          <h2>Reset Password</h2>
+          <br></br>
 
-        <form
-          action="#"
-          onSubmit={handleSubmit}
-          className="reset-form validate-form"
-        >
-          <div
-            className="wrap-reset validate-password"
-            data-validate="Please enter password"
+          <form
+            action="#"
+            onSubmit={handleSubmit}
+            className="reset-form validate-form"
           >
-            <label className="password" htmlFor="password">
-              New password:
-            </label>
-            <input
-              className="input"
-              name="password"
-              value={formData.password}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-              placeholder="Enter new password."
-              id="password"
-              type={passwordShown ? "text" : "password"}
-            />
-            <i className="eye" onClick={togglePasswordVisiblity}>
-              {eye}
-            </i>
-          </div>
-
-          <div
-            className="wrap-input validate-password"
-            data-validate="Please enter password"
-          >
-            <label className="password" htmlFor="confirmPassword">
-              Confirm password:
-            </label>
-            <input
-              className="input"
-              name="confirmPasswords"
-              value={formData.confirmPassword}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, confirmPassword: e.target.value })
-              }
-              placeholder="Re-enter password."
-              id="passwords"
-              type={confirmPasswordShown ? "text" : "password"}
-            />
-            <i className="eye" onClick={togglePasswordVisiblities}>
-              {eye}
-            </i>
-          </div>
-
-          <button className="signin-btn" type="submit">
-            Reset Password
-          </button>
-
-          {message.length > 0 ? (
-            <div>
-              <br></br>
-              <p style={{ textAlign: "center" }}>{message}</p>
+            <div
+              className="wrap-reset validate-password"
+              data-validate="Please enter password"
+            >
+              <label className="password" htmlFor="password">
+                New password:
+              </label>
+              <input
+                className="input-reset"
+                name="password"
+                value={formData.password}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                placeholder="Enter new password."
+                id="password"
+                type={passwordShown ? "text" : "password"}
+              />
+              <i className="eye" onClick={togglePasswordVisiblity}>
+                {eye}
+              </i>
             </div>
-          ) : null}
 
-          { message === "Password updated successfully." ? (
-            <div>
-              <button className="signin-btn" type="submit" onClick={handleSignin}>
-                Proceed to Sign In
-              </button>
+            <div
+              className="wrap-input validate-password"
+              data-validate="Please enter password"
+            >
+              <label className="password" htmlFor="confirmPassword">
+                Confirm password:
+              </label>
+              <input
+                className="input"
+                name="confirmPasswords"
+                value={formData.confirmPassword}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
+                placeholder="Re-enter password."
+                id="passwords"
+                type={confirmPasswordShown ? "text" : "password"}
+              />
+              <i className="eye" onClick={togglePasswordVisiblities}>
+                {eye}
+              </i>
             </div>
-          ) : null }
-        </form>
+
+            <button className="reset-btn" type="submit">
+              Reset Password
+            </button>
+
+            {message.length > 0 ? (
+              <div>
+                <br></br>
+                <p style={{ textAlign: "center" }}>{message}</p>
+              </div>
+            ) : null}
+
+            {message === "Password updated successfully." ? (
+              <div>
+                <button
+                  className="signin-btn"
+                  type="submit"
+                  onClick={handleSignin}
+                >
+                  Proceed to Sign In
+                </button>
+              </div>
+            ) : null}
+          </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

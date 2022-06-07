@@ -48,7 +48,7 @@ const Signup = () => {
       );
 
       console.log(response.data);
-      setSuccessMessage(response.data.msg);
+      setSuccessMessage(response.data.message);
 
       setErrorMessage('');
     } catch (e: any) {
@@ -69,7 +69,7 @@ const Signup = () => {
   console.log(errorMessage);
 
   return (
-    <>
+    <section className="container1">
       <div className="container2">
         <div className="heading">
           <h2>Sign Up</h2>
@@ -255,7 +255,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

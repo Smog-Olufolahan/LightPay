@@ -1,125 +1,143 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  .signin-form-container {
-    padding: 20px 0 39px 0;
-  }
-  
-  .container-wallet {
-    margin: auto;
-    width: 360px;
-    height: 90vh;
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-    opacity: 100%;
-    background-color: #fff;
-    border: 1px solid rgb(143, 143, 143);
-    position: relative;
-  }
+  box-sizing: border-box;
+}
 
-  .wrap-wallet-screen {
-    width: 360px;
-    background: #fff;
-  }
+.signin-form-container {
+  padding: 20px 0 39px 0;
+}
 
-  .wallet-title {
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 1.2;
-    text-align: center;
-    display: block;
-    width: 100%;
-    top: 0;
-    left: 0;
-    color: #4e515f;
-    padding-top: 50px;
-    padding-bottom: 39px;
-  }
+.container-wallet {
+  margin: auto;
+  width: 360px;
+  height: 760px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  opacity: 100%;
+  background-color: #fff;
+  border: 1px solid rgb(143, 143, 143);
+}
 
-  .add {
-      display: flex;
-      justify-content: flex-end;
-  }
+.wrap-wallet-screen {
+  width: 360px;
+  background: #fff;
+}
 
-  .add-wallet {
-      font-weight: bold;
-      font-size: 14px;
-      margin-left: 10px;
-      color: #01051A;
-  }
+.wallet-title {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: #4e515f;
+  padding-top: 50px;
+  padding-bottom: 39px;
+}
 
-  .wrap-input-wallet {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .search {
-      margin-left: 15px;
-      left: 0;
-      position: absolute;
-  }
+.add {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
 
-  .input-wallet {
-    font-size: 14px;
-    font-weight: normal;
-    border-radius: 10px;
-    padding: 10px 10px 10px 35px;
-    margin: 5px 0 5px 3px;
-    width: 100%;
-    border: 1px solid #01051a1a;
-    outline: none;
-    background-color: #01051a1a; 
-    display: block;
-    position: relative;
-    height: 55px;
-  }
+.add-wallet {
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 8px;
+  margin-top: 2px;
+  color: #01051a;
+}
 
-  .wrap-footer {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    left: 0;
-    padding: 0px 10px;
-  }
+.wrap-input-wallet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  /* margin-bottom: 10px; */
+  z-index: 1;
+}
 
-  .icon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #A3A5AC;
-    font-size: 15px;
-  }
-  .icon-container:hover {
-    cursor: pointer;
-  }
+.search {
+  margin-left: 20px;
+  left: 0;
+  position: absolute;
+}
 
-  .wallet-currency {
-      font-size: 12px;
-      padding: 10px;
-      margin-top: 30px;
-      border: 1px solid rgb(113, 113, 117);
-  }
+.input-wallet {
+  font-size: 14px;
+  font-weight: normal;
+  border-radius: 10px;
+  padding: 10px 10px 10px 45px;
+  margin: 5px 0 5px 3px;
+  width: 100%;
+  border: 1px solid #01051a1a;
+  outline: none;
+  background-color: #01051a1a;
+  display: block;
+  position: relative;
+  height: 55px;
+}
 
-  .coins {
-    display: flex;
-    margin-bottom: -40px;
-  }
-  
-  .coins img {
-    margin-right: 160px;
-    margin-left: -8px;
-    margin-top: 12px;
-  }
-  .coins:hover {
-    cursor: pointer;
-  }
+.wrap-footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  left: 0;
+  padding: 0px 10px;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a3a5ac;
+  font-size: 15px;
+}
+.icon-container:hover {
+  cursor: pointer;
+}
+
+.wrap-wallet-currency {
+  font-size: 12px;
+  padding: 10px;
+  margin-top: 10px;
+  /* border: 1px solid rgb(113, 113, 117); */
+}
+
+.coins {
+  display: flex;
+  margin-bottom: -40px;
+}
+
+.coins img {
+  margin-right: 160px;
+  margin-left: -8px;
+  margin-top: 12px;
+}
+.coins:hover {
+  cursor: pointer;
+}
+
+.bal h5 {
+  margin-left: 45px;
+  margin-top: 13px;
+  font-family: "Outfit", sans-serif;
+  color: #01051a;
+  font-size: 11pt;
+  font-weight: 600;
+}
+
+.bal-usd h5 {
+  /* margin-top: 32px; */
+  font-size: 9pt;
+  margin-left: 45px;
+  margin-top: -6px;
+  color: #a3a5ac;
+}
