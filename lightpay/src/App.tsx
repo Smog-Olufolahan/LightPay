@@ -6,18 +6,15 @@ import Signup from './pages/Signup/Signup';
 import Signin from './components/signin';
 import AccountsDashboard from './pages/AccountsDashboard/AccountsDashboard';
 import "./components/css/main.css";
-import Transaction from './pages/Transactions/Transaction';
-import { Modal } from './pages/Transactions/TransactionDetails';
-import Walletscreen from './components/walletscreen';
+import ReceiveSend from './pages/Transactions/ReceiveSend';
+import { TransactionDetails } from './pages/Transactions/TransactionDetails';
+import Wallets from './components/walletscreen';
 import GenerateQr from "./pages/generateAddress/qrAddress";
 import WalletDetails from './pages/walletDetails/WalletDetails';
+import Transaction from './pages/Transactions/Transactions';
 
 function App() {
-  // const [showModal, setShowModal] = useState(false);
 
-// const openModal = () => {
-//   setShowModal(prev => !prev);
-// };
   return (
     <Routes>
       <Route path="/" element={<Signup />} />
@@ -25,12 +22,13 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/auth/verify-email" element={<VerifyEmail />} />
-      <Route path="/dashboard" element={<AccountsDashboard />} />
-      <Route path="/auth/transaction" element={<Transaction />} />
-      <Route path="/walletscreen" element={<Walletscreen/>} />
-      <Route path="/generateqr" element={<GenerateQr />} />
-      <Route path="/trans-deets" element={<Modal />} />
-      <Route path="/send" element={<WalletDetails />} />
+      <Route path="/auth/dashboard" element={<AccountsDashboard />} />
+      <Route path="/wallet-qr" element={<GenerateQr />} />
+      <Route path="/auth/wallet-deets" element={<ReceiveSend />} />
+      <Route path="/auth/transactions" element={<Transaction />} />
+      <Route path="/wallets" element={<Wallets/>} />
+      <Route path="/auth/transaction-deets" element={<TransactionDetails />} />
+      <Route path="/auth/send" element={<WalletDetails />} />
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +11,9 @@ import "../components/css/wallet.css";
 const add = <FontAwesomeIcon icon={faCirclePlus} />;
 const search = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
-const Walletscreen = () => {
+const Wallets = () => {
   const [userWallet, setUserWallet] = useState<any[]>([]);
+  // const [walletBalances, setWalletBalances] = useState<any[]>([]);
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -22,7 +23,10 @@ const Walletscreen = () => {
 
   const searchedWallets = userWallet.filter((wallet) => {
     const coinName = coins.filter((coin) => coin.symbol === wallet.coin)[0].name;
-    return wallet.coin.toLowerCase().includes(searchTerm.toLowerCase()) || coinName.toLowerCase().includes(searchTerm.toLowerCase());
+    return (
+      wallet.coin.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      coinName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   useEffect(() => {
@@ -35,22 +39,40 @@ const Walletscreen = () => {
       }
 
       config.headers.Authorization = token ? `Bearer ${token}` : "";
-
       return config;
     });
 
-    // console.log(token);
-
-    const getWalletCurrencyWithAxios = async () => {
+    const getWallets = async () => {
       try {
         const response = await axios.get(
           "http://localhost:3001/wallets/userwallet"
         );
         setUserWallet(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
+    };
+
+    const getWalletsBalances = async () => {
+      const walletsWithBal = [];
+      for (let i = 0; i < userWallet.length; i++) {
+        const coin = userWallet[i].coin;
+        try {
+          const walletBalance = await axios.get(
+            `http://localhost:3001/wallets/${coin}/balance`
+          );
+          walletsWithBal.push({
+            address: userWallet[i].address,
+            coin,
+            balance: walletBalance.data.balance,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log("All Balances", walletsWithBal);
+      setUserWallet(walletsWithBal);
     };
 
     // axios
@@ -62,7 +84,8 @@ const Walletscreen = () => {
     //     console.log(err);
     //   })
 
-    getWalletCurrencyWithAxios();
+    getWallets();
+    // getWalletsBalances();
   }, []);
 
   return (
@@ -101,16 +124,21 @@ const Walletscreen = () => {
                 (coin) => coin.symbol === wallet.coin
               )[0].name;
               const coinSymbol = wallet.coin;
-              const coinBalance = 0.01; // replace with actual balance
-              const coinBalanceUSD = 0.02; // replace with actual balance
+              const coinAddress = wallet.address;
+              const coinBalance = wallet.balance;
+              const coinPrice = coins.filter(
+                (coin) => coin.symbol === wallet.coin
+              )[0].price;
+              const coinBalanceUSD = coinBalance * coinPrice;
 
               return (
                 <div key={index}>
                   <div
                     className="coins"
                     onClick={() =>
-                      navigate("/auth/transaction/", {
+                      navigate("/auth/wallet-deets/", {
                         state: {
+                          coinAddress,
                           coinName,
                           coinSymbol,
                           coinBalance,
@@ -125,17 +153,18 @@ const Walletscreen = () => {
                     </div>
                     <div className="symbol">
                       <h6>
-                        {wallet.coin +
+                        {coinSymbol +
                           ": " +
-                          wallet.address.slice(0, 7) +
+                          coinAddress.slice(0, 7) +
                           "..." +
-                          wallet.address.slice(-4)}
+                          coinAddress.slice(-4)}
                       </h6>
                     </div>
 
                     <div>
                       <div className="bal">
-                        <h5>0</h5>
+                        <h5>{coinBalance}</h5>
+                        {/* <h5>0</h5> */}
                       </div>
                       <div className="bal-usd">
                         <h5>0 USD</h5>
@@ -154,4 +183,4 @@ const Walletscreen = () => {
   );
 };
 
-export default Walletscreen;
+export default Wallets;

@@ -1,18 +1,33 @@
-// Status: confirmed / pending / failed / cancelled
-
 import React, { useState, FC } from "react";
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
+import { useNavigate, useLocation } from "react-router-dom";
 
+interface LocationState {
+  amount: number;
+  To: string;
+  From: string;
+  Status: string;
+  transactionId: string;
+  nonce: number;
+  gasLimit: number;
+  gasPrice: number;
+}
 
-export const Modal = () => {
+export const TransactionDetails = (props: any) => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const { amount, To, From, Status, transactionId, nonce, gasLimit, gasPrice } =
+    state;
+  const direction = From === "0x127B66D1148a2545595f116A4376Ace44D2357ed" ? "Send" : "Receive";
+  
   const [showModal, setShowModal] = useState(true);
   
   // const openModal = () => {
   //   setShowModal(prev => !prev);
   // };
-  const from = '0x78cducfdbuvyfbvfuvee78';
-  const to = '0x221ducfdbuvyfbvfuvE8Fb';
 
   return (
     <>
@@ -21,22 +36,24 @@ export const Modal = () => {
           <ModalWrapper>
             {/* showModal={showModal}> */}
             <ModalContent>
-              <h1>Receive</h1>
-              <h3>Status: Confirmed</h3>
-              <p><strong>From:&nbsp;</strong>{from.slice(0,5) + '...' + from.slice(-4)}</p>
-              <p><strong>To:&nbsp;</strong>{to.slice(0,5) + '...' + to.slice(-4)}</p>
-              <p><strong>Transaction ID:&nbsp;</strong>(Click to copy)</p>
+              <h1>{direction}</h1>
+              <h3>Status: {Status}</h3>
+              <p><strong>From:&nbsp;</strong>{From.slice(0,5) + '...' + From.slice(-4)}</p>
+              <p><strong>To:&nbsp;</strong>{To.slice(0,5) + '...' + To.slice(-4)}</p>
+              <p><strong>Transaction ID:&nbsp;</strong>{transactionId.slice(0,10) + '...' + transactionId.slice(-5)}</p>
               <hr></hr>
               <h3>Transaction</h3>
-              <p>Nonce:<span>366015</span></p>
-              <p>Amount:<span><strong>1 ETH</strong></span></p>
-              <p>Gas Limit (Units):<span>400000</span></p>
-              <p>Gas Price:<span>50</span></p>
-              <p><strong>Total:</strong><span><strong>1.02 ETH</strong></span></p>
+              <p>Nonce:<span>{nonce}</span></p>
+              <p>Amount:<span><strong>{amount}&nbsp;ETH</strong></span></p>
+              <p>Gas Limit (Units):<span>{gasLimit}</span></p>
+              <p>Gas Price:<span>{gasPrice}</span></p>
+              <p><strong>Total:</strong><span><strong>{amount+0.02}&nbsp;ETH</strong></span></p>
             </ModalContent>
             <CloseModalButton
               aria-label="Close modal"
-              onClick={() => setShowModal((prev: any) => !prev)}
+              onClick={() => {
+                setShowModal((prev: any) => !prev)
+                navigate(-1)}}
             />
           </ModalWrapper>
         </Background>
@@ -101,6 +118,7 @@ const ModalContent = styled.div`
     margin-bottom: 1rem;
     font-size: 14px;
     display: flex
+    // overflow: ellipses;
   }
 
   span {

@@ -20,15 +20,19 @@ const AccountsDashboard = () => {
   // const [coinList, setCoinList] = useState<any[]>([]);
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("userToken") as string);
+
     axios
-      .get("http://localhost:3001/username")
-      .then((response) => {
+      .get("http://localhost:3001/auth/username", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => {
         setUsername(response.data.username);
-      })
-      .catch((err) => {
-        // console.log(err);
+      }).catch((err) => {
+        console.log(err);
         if (err.response.status === 401) {
-          // console.log("Session expired, Login!");
+          console.log("Session expired, Login!");
           navigate("/signin/");
         }
       });

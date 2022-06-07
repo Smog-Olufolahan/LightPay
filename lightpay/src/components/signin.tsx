@@ -27,14 +27,14 @@ const Signin = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     //setSubmitted(true);
-    console.log(formData);
-    Axios.post("http://localhost:3001/login", formData)
+    // console.log(formData);
+    Axios.post("http://localhost:3001/auth/login", formData)
       .then((response) => {
         setMessage(response.data.message);
-        console.log(response.data);
+        // console.log(response.data);
         const token = response.data.token;
         localStorage.setItem("userToken", JSON.stringify(token));
-        response.data.message === "Login successful." ? navigate("/dashboard/", {
+        response.data.message === "Login successful." ? navigate("/auth/dashboard/", {
           state: {
             username: response.data.fullname
           }
@@ -63,7 +63,7 @@ const Signin = () => {
     console.log(formData);
     Axios.post("http://localhost:3001/auth/forgot-password", formData)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setMessage(response.data.message);
       })
       .catch(function (error) {

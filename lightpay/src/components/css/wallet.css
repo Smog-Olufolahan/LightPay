@@ -41,12 +41,14 @@
 .add {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .add-wallet {
   font-weight: bold;
   font-size: 14px;
-  margin-left: 10px;
+  margin-left: 8px;
+  margin-top: 2px;
   color: #01051a;
 }
 

@@ -1166,7 +1166,7 @@ export const coins = [
   {
     id: "eth_frax3crv-f_0xd632f22692fac7611d2aa1c0d552930d43caed3b",
     icon: "https://static.coinstats.app/icons/fra.png",
-    name: "Curve.fi Factory USD Metapool: Frax",
+    name: "Curve.fi Metapool",
     symbol: "FRAX3CRV-f",
     rank: 45,
     price: 1.0097125468737134,

@@ -1,81 +1,69 @@
 import "./qrAddress.module.css";
-import styles from "./qrAddress.module.css"
-
+import styles from "./qrAddress.module.css";
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import QRcode from "qrcode.react";
-import axios, { AxiosRequestConfig } from "axios";
-import { IoCopyOutline } from "react-icons/io5";
 import { IoRefresh } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
-function GenerateQr() {
+interface LocationState {
+  coinAddress: string;
+}
+
+const copyIcon = <FontAwesomeIcon icon={faCopy} />;
+
+const GenerateQr = () => {
   const [qrValue, setQrValue] = useState([] as any);
+  const [copyMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const { coinAddress } = state;
 
   const handleOnChange = (event: any) => {
     const { value } = event.target;
     setQrValue(value);
   };
 
-  const handleQrDisplay = () => {
-    // Add a request interceptor
-    let token = (localStorage.getItem('userToken')) as string;
-    token = JSON.parse(token)
-    axios.interceptors.request.use(function (config: AxiosRequestConfig) {
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(coinAddress);
+    setErrorMessage("Address copied to clipboard.");
+  }
 
-      if (config.headers === undefined) {
-        config.headers = {};
-      }
-
-      config.headers.Authorization = token ? `Bearer ${token}` : '';
-      // config.headers.Authorization = `Bearer ${token}`;
-
-      return config;
-    });
-
-    console.log(token);
-
-    axios.get(`http://localhost:3001/userwallet`)
-      .then((response) => {
-        console.log(response.data);
-        setQrValue(response.data[0].address);
-      })
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          // setMessage(error.response.data.message);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(error.request);
-          // setMessage(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-          // setMessage("Error" + error.message);
-        }
-      });
-  };
-
+  
   useEffect(() => {
-    handleQrDisplay();
+    setQrValue(coinAddress);
   }, []);
 
   return (
     <div className={styles.main_container}>
       <div className={styles.container}>
-        <div className={styles.App}>
+        <div className={styles.check}>
           <div className={styles.topIcons}>
-            <IoCloseOutline />
+            <IoCloseOutline className={styles.close} onClick={() => navigate(-1)}/>
             <div className={styles.refreshIcon}>
               <IoRefresh />
               <p className={styles.para}>Refresh</p>
             </div>
           </div>
-          <h3 className={styles.text}><strong>Wallet Address</strong></h3>
+          <h3 className={styles.title}>
+            Wallet Address
+          </h3>
           <div className={styles.inputContainer}>
-            <IoCopyOutline className={styles.icon} />
-            <div className={styles.input}> <input onChange={handleOnChange} disabled={true} value={qrValue} className={styles.icon} /></div>
+            <div className={styles.input}>
+              {" "}
+              <i className={styles.copy} onClick={copyToClipboard}> {copyIcon} </i>
+              <input
+                onChange={(e) => handleOnChange(e)}
+                disabled={true}
+                value={qrValue}
+                className={styles.icon}
+                type="text"
+              />
+            </div>
           </div>
           <div className={styles.qrContains}>
             <QRcode
@@ -83,11 +71,19 @@ function GenerateQr() {
               value={qrValue}
               level={"H"}
               includeMargin={false}
-              size={200}
-              className={styles.qrContainer} />
+              size={220}
+              className={styles.qrContainer}
+            />
           </div>
+
+          {copyMessage.length >= 1 && copyMessage.includes('Address copied to clipboard.') ? (
+                <div className={styles.errorMsg}>
+                  {' '}
+                  {copyMessage}{' '}
+                </div>
+              ) : null}
         </div>
-    </div>
+      </div>
     </div>
   );
 }

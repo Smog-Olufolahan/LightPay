@@ -9,13 +9,13 @@ export const BottomNavBar = () => {
 
   return (
     <footer className="dash-footer">
-      <div className="home" onClick={() => navigate("/dashboard/")}>
+      <div className="home" onClick={() => navigate("/auth/dashboard/")}>
         <IconContext.Provider value={{ className: "home1" }}>
           <RiHome7Fill />
         </IconContext.Provider>
         <p>Home</p>
       </div>
-      <div className="transaction">
+      <div className="transaction" onClick={() => navigate("/auth/transactions/")}>
         <IconContext.Provider value={{ className: "transaction1" }}>
           <GrTransaction />
         </IconContext.Provider>
@@ -27,7 +27,7 @@ export const BottomNavBar = () => {
         </IconContext.Provider>
         <p>Gift Cards</p>
       </div>
-      <div className="wallet" onClick={() => navigate("/walletscreen/")}>
+      <div className="wallet" onClick={() => navigate("/wallets/")}>
         <IconContext.Provider value={{ className: "wallet1" }}>
           <RiWallet3Fill />
         </IconContext.Provider>
