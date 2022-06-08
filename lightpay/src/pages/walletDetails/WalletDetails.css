@@ -21,7 +21,7 @@
   padding: 20px;
   opacity: 100%;
   background-color: #fff;
-  border: 1px solid rgb(143, 143, 143);
+  /* border: 1px solid rgb(143, 143, 143); */
 }
 .wrap-wallet {
   width: 360px;
@@ -106,7 +106,7 @@ select option {
   padding: 10px;
   border-radius: 10px;
   font-size: 15px;
-  margin: 20rem 0 10px 0;
+  margin: 15rem 0 10px 0;
   border: none;
   outline: none;
   background-color: #01051a;

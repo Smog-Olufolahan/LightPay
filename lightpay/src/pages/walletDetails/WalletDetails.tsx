@@ -14,7 +14,7 @@ const WalletDetails = () => {
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("userToken") as string);
-    const url = "http://localhost:3001/wallets/userwallet";
+    const url = "http://localhost:3001/wallets/";
 
     const getUserWallet = async () => {
       try {
@@ -71,13 +71,22 @@ const WalletDetails = () => {
                 </select>
               </div>
             </div>
-            <label className="to" htmlFor="password">
+            <label className="to" htmlFor="recipient">
               To
             </label>
             <input
               className="input"
-              name="password"
+              name="recipient"
               placeholder="Recipient Address"
+            />
+            <label className="to" htmlFor="amount">
+              Amount
+            </label>
+            <input
+              className="input"
+              name="amount"
+              type="number"
+              placeholder="Amount"
             />
             <button className="continue-btn" type="submit" disabled={true}>
               Continue

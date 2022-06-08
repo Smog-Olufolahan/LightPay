@@ -30,9 +30,13 @@ const Wallets = () => {
   });
 
   useEffect(() => {
+    const wallets = JSON.parse(localStorage.getItem("walletsWithBal") as string);
+    if (wallets) {
+      setUserWallet(wallets);
+    }
+
     // Add a request interceptor
-    let token = localStorage.getItem("userToken") as string;
-    token = JSON.parse(token);
+    const token = JSON.parse(localStorage.getItem("userToken") as string);
     axios.interceptors.request.use(function (config: AxiosRequestConfig) {
       if (config.headers === undefined) {
         config.headers = {};
@@ -49,8 +53,12 @@ const Wallets = () => {
         );
         setUserWallet(response.data);
         console.log(response.data);
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
+        // if (error.response.status === 400) {
+        //   console.log("Session expired, Login!");
+        //   navigate("/signin/");
+        // }
       }
     };
 
@@ -67,8 +75,12 @@ const Wallets = () => {
             coin,
             balance: walletBalance.data.balance,
           });
-        } catch (error) {
+        } catch (error: any) {
           console.log(error);
+          // if (error.response.status === 400) {
+          //   console.log("Session expired, Login!");
+          //   navigate("/signin/");
+          // }
         }
       }
       console.log("All Balances", walletsWithBal);
@@ -80,8 +92,12 @@ const Wallets = () => {
     //   .then((response) => {
     //     // console.log(response.data.coins);
     //     setCoinList(response.data.coins);
-    //   }).catch((err) => {
+    //   }).catch((err: any) => {
     //     console.log(err);
+    //   if (error.response.status === 400) {
+      // console.log("Session expired, Login!");
+      // navigate("/signin/");
+    // }
     //   })
 
     getWallets();
@@ -129,7 +145,7 @@ const Wallets = () => {
               const coinPrice = coins.filter(
                 (coin) => coin.symbol === wallet.coin
               )[0].price;
-              const coinBalanceUSD = coinBalance * coinPrice;
+              const coinBalanceUSD = (Number(coinBalance) * Number(coinPrice)).toFixed(2);
 
               return (
                 <div key={index}>
@@ -167,7 +183,7 @@ const Wallets = () => {
                         {/* <h5>0</h5> */}
                       </div>
                       <div className="bal-usd">
-                        <h5>0 USD</h5>
+                        <h5>{coinBalanceUSD}&nbsp;USD</h5>
                       </div>
                     </div>
                   </div>
@@ -176,8 +192,8 @@ const Wallets = () => {
             })}
           </div>
 
-          <BottomNavBar />
         </div>
+          <BottomNavBar />
       </div>
     </div>
   );

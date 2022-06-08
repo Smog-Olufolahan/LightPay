@@ -75,13 +75,14 @@ const GenerateQr = () => {
               className={styles.qrContainer}
             />
           </div>
+          <div className={styles.errorMsg}>{copyMessage}</div>
 
-          {copyMessage.length >= 1 && copyMessage.includes('Address copied to clipboard.') ? (
+          {/* {copyMessage.length >= 1 && copyMessage.includes('Address copied to clipboard.') ? (
                 <div className={styles.errorMsg}>
                   {' '}
                   {copyMessage}{' '}
                 </div>
-              ) : null}
+              ) : null} */}
         </div>
       </div>
     </div>

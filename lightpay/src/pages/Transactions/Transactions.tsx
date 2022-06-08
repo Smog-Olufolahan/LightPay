@@ -22,6 +22,7 @@ const Transactions = () => {
 
   const navigate = useNavigate();
   const [userTransactions, setUserTransactions] = useState([]);
+  const [userWallet, setUserWallet] = useState<any[]>([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (event: any) => {
@@ -38,10 +39,33 @@ const Transactions = () => {
   });
 
   useEffect(() => {
+    const wallets = JSON.parse(localStorage.getItem("walletsWithBal") as string);
     const token = JSON.parse(localStorage.getItem("userToken") as string);
-    const url = "http://localhost:3001/transactions";
 
+    const getWallets = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/wallets", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserWallet(response.data);
+        // console.log(response.data);
+      } catch (error: any) {
+        console.log(error);
+        // if (error.response.status === 400) {
+        //   console.log("Session expired, Login!");
+        //   navigate("/signin/");
+        // }
+      }
+    };
+
+    if (wallets) {
+      setUserWallet(wallets);
+    } else getWallets();
+    
     const getTransactions = async () => {
+      const url = "http://localhost:3001/transactions";
       try {
         const response = await axios.get(url, {
           headers: {
@@ -50,10 +74,15 @@ const Transactions = () => {
         });
         // console.log(response.data);
         setUserTransactions(response.data);
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
+        // if (error.response.status === 400) {
+        //   console.log("Session expired, Login!");
+        //   navigate("/signin/");
+        // }
       }
     };
+
     getTransactions();
   }, []);
 
@@ -108,14 +137,18 @@ const Transactions = () => {
                         })
                       }
                     >
-                      {transaction.From ===
-                      "0x3a822865C2F12C4276E3625213f9ed22225E7d0b" ? (
-                        <img src={debitIcon} alt="Debit"/>
+                      {userWallet.find((val) => val.address === transaction.From) ? (
+                        <img src={debitIcon} alt="Debit" />
                       ) : (
-                        <img src={creditIcon} alt="Credit"/>
+                        <img src={creditIcon} alt="Credit" />
                       )}
                       <div className="trans-eth">
-                        <h6>{transaction.From.slice(0,3)}...{transaction.From.slice(-5)} → {transaction.To.slice(0,3)}...{transaction.To.slice(-5)}</h6>
+                        <h6>
+                          {transaction.From.slice(0, 3)}...
+                          {transaction.From.slice(-5)} →{" "}
+                          {transaction.To.slice(0, 3)}...
+                          {transaction.To.slice(-5)}
+                        </h6>
                       </div>
                       <div className="trans-symbol">
                         <h6>{transDate.slice(0, 24)}</h6>
