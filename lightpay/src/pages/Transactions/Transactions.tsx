@@ -39,7 +39,9 @@ const Transactions = () => {
   });
 
   useEffect(() => {
-    const wallets = JSON.parse(localStorage.getItem("walletsWithBal") as string);
+    const wallets = JSON.parse(
+      localStorage.getItem("walletsWithBal") as string
+    );
     const token = JSON.parse(localStorage.getItem("userToken") as string);
 
     const getWallets = async () => {
@@ -63,7 +65,7 @@ const Transactions = () => {
     if (wallets) {
       setUserWallet(wallets);
     } else getWallets();
-    
+
     const getTransactions = async () => {
       const url = "http://localhost:3001/transactions";
       try {
@@ -72,7 +74,7 @@ const Transactions = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log(response.data);
+        console.log(response.data);
         setUserTransactions(response.data);
       } catch (error: any) {
         console.log(error);
@@ -91,6 +93,17 @@ const Transactions = () => {
       <div className="trans-container">
         <div className="wrap-trans">
           <span className="trans-title">Transactions</span>
+
+          <div className="legend">
+            <div className="row">
+              <div className="column">
+                <img src={debitIcon} alt="Debit" /> <p>Outbound</p>
+              </div>
+              <div className="column">
+                <img src={creditIcon} alt="Credit" /> <p>Inbound</p>
+              </div>
+            </div>
+          </div>
 
           <div
             className="wrap-input-trans"
@@ -112,10 +125,11 @@ const Transactions = () => {
             {/* <h4>All Transactions</h4> */}
             <div className="trans-list">
               {searchedTransactions.map((transaction: any, index) => {
-                const { amount, To, From, Meta, Status } = transaction;
-                const { transactionId, nonce, gasLimit, gasPrice } =
-                  JSON.parse(Meta);
+                const { amount, to, from, meta, status } = transaction;
+                const { nonce, gas, gasPrice } = JSON.parse(meta);
+                  const transactionId = JSON.parse(meta).txHash.transactionHash;
                 const transDate = new Date(transaction.createdAt).toString();
+                const currency = userWallet.filter(wallet => wallet.address === from || wallet.address === to)[0].coin;
 
                 return (
                   <div className="exchange-rate-list" key={index}>
@@ -126,35 +140,37 @@ const Transactions = () => {
                         navigate("/auth/transaction-deets/", {
                           state: {
                             amount,
-                            To,
-                            From,
-                            Status,
+                            to,
+                            from,
+                            status,
                             transactionId,
                             nonce,
-                            gasLimit,
+                            gas,
                             gasPrice,
                           },
                         })
                       }
                     >
-                      {userWallet.find((val) => val.address === transaction.From) ? (
+                      {userWallet.find(
+                        (val) => val.address === transaction.from
+                      ) ? (
                         <img src={debitIcon} alt="Debit" />
                       ) : (
                         <img src={creditIcon} alt="Credit" />
                       )}
                       <div className="trans-eth">
                         <h6>
-                          {transaction.From.slice(0, 3)}...
-                          {transaction.From.slice(-5)} →{" "}
-                          {transaction.To.slice(0, 3)}...
-                          {transaction.To.slice(-5)}
+                          {transaction.from.slice(0, 3)}...
+                          {transaction.from.slice(-5)} →{" "}
+                          {transaction.to.slice(0, 3)}...
+                          {transaction.to.slice(-5)}
                         </h6>
                       </div>
                       <div className="trans-symbol">
                         <h6>{transDate.slice(0, 24)}</h6>
                       </div>
                       <div className="trans-price">
-                        <h6>${transaction.amount.toFixed(2)}</h6>
+                        <h6>{transaction.amount} {currency}</h6>
                       </div>
                     </div>
                     {/* <hr></hr> */}

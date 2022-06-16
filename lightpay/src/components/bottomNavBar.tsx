@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { FaGift } from "react-icons/fa";
+import { BsCardList } from "react-icons/bs";
 import { GrTransaction } from "react-icons/gr";
 import { RiHome7Fill, RiWallet3Fill } from "react-icons/ri";
 
@@ -15,17 +15,20 @@ export const BottomNavBar = () => {
         </IconContext.Provider>
         <p>Home</p>
       </div>
-      <div className="transaction" onClick={() => navigate("/auth/transactions/")}>
+      <div
+        className="transaction"
+        onClick={() => navigate("/auth/transactions/")}
+      >
         <IconContext.Provider value={{ className: "transaction1" }}>
-          <GrTransaction />
+          <BsCardList />
         </IconContext.Provider>
         <p>Transactions</p>
       </div>
-      <div className="gift">
-        <IconContext.Provider value={{ className: "gift1" }}>
-          <FaGift />
+      <div className="transfer" onClick={() => navigate("/auth/transfer")}>
+        <IconContext.Provider value={{ className: "transfer1" }}>
+          <GrTransaction />
         </IconContext.Provider>
-        <p>Gift Cards</p>
+        <p>Transfer</p>
       </div>
       <div className="wallet" onClick={() => navigate("/wallets/")}>
         <IconContext.Provider value={{ className: "wallet1" }}>

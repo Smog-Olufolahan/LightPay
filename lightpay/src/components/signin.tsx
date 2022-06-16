@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,6 +57,10 @@ const Signin = () => {
         }
       });
   };
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const handleForgetPassword = (e: React.SyntheticEvent) => {
     e.preventDefault();

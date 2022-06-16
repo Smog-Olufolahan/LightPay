@@ -35,8 +35,17 @@ const ReceiveSend = () => {
               <div id="nav-icon">
                 <FaHandHoldingUsd fontSize="1.5em"></FaHandHoldingUsd>
               </div>
-              <div id="nav-link">
-                <a href="#">Make Request</a>
+              <div
+                id="nav-link"
+                onClick={() =>
+                  navigate("/wallet-qr", {
+                    state: {
+                      coinAddress,
+                    },
+                  })
+                }
+              >
+                <a>Make Request</a>
               </div>
             </div>
           </div>
@@ -46,7 +55,7 @@ const ReceiveSend = () => {
               <h2>{coinBalance}</h2>
               <p>{coinSymbol}</p>
             </div>
-            <h5>{coinBalanceUSD} USD</h5>
+            <h5>${coinBalanceUSD}</h5>
           </section>
           <section className="send-receive-icon">
             <div className="receive-icon-and-title">

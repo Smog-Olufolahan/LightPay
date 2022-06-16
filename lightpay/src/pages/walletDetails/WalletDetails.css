@@ -3,7 +3,7 @@
 }
 
 .wallet-screen-container {
-  padding: 20px 0 39px 0;
+  padding-top: 20px;
   /* padding-top: 0.5px; */
 }
 
@@ -21,7 +21,7 @@
   padding: 20px;
   opacity: 100%;
   background-color: #fff;
-  /* border: 1px solid rgb(143, 143, 143); */
+  border: 1px solid #A3A5AC;
 }
 .wrap-wallet {
   width: 360px;
@@ -93,15 +93,19 @@ select option {
   display: block;
   position: relative;
   height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.continue-btn {
+.xxf-continue-btn {
+  position: fixed;
+  top: 430px;
   font-weight: bold;
   color: #fff;
-  width: 100%;
+  width: 320px;
   display: flex;
   justify-content: center;
-  line-height: 1.8;
+  line-height: 2.2;
   height: 56px;
   padding: 10px;
   border-radius: 10px;
@@ -111,6 +115,29 @@ select option {
   outline: none;
   background-color: #01051a;
   cursor: pointer;
+}
+
+.xf-overlay {
+  position: fixed;
+  top: 0px;
+  width: 360px;
+  height: 760px;
+  background-color: #A3A5AC;
+  margin-top: 20px;
+  margin-left: -20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  opacity: 30%;
+}
+
+.xf-spinner {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #000;
+  margin-top: 60px;
 }
 
 /* @media only screen and (max-width: 600px) {

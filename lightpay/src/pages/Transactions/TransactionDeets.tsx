@@ -11,7 +11,7 @@ interface LocationState {
   status: string;
   transactionId: string;
   nonce: number;
-  gasLimit: number;
+  gas: number;
   gasPrice: number;
 }
 
@@ -20,7 +20,7 @@ export const TransactionDetails = (props: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
-  const { amount, to, from, status, transactionId, nonce, gasLimit, gasPrice } =
+  const { amount, to, from, status, transactionId, nonce, gas, gasPrice } =
     state;
   const direction =
   userWallet.find((val) => val.address === from) ? "Send (Outbound)" : "Receive (Inbound)";
@@ -87,7 +87,7 @@ export const TransactionDetails = (props: any) => {
                 </span>
               </p>
               <p>
-                Gas Limit (Units):<span>{gasLimit}</span>
+                Gas Limit (Units):<span>{gas}</span>
               </p>
               <p>
                 Gas Price:<span>{gasPrice}</span>

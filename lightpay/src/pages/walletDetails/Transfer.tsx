@@ -1,17 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
-// import { SiEthereum } from "react-icons/si";
 import { SpinnerCircular } from "spinners-react";
-import "./WalletDetails.css";
+// import { SiEthereum } from "react-icons/si";
 import { coins } from "../../components/coinList";
-import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import "./WalletDetails.css";
 
-interface LocationState {
-  coinAddress: string;
-}
-
-const WalletDetails = () => {
+const Transfer = () => {
   const [userWallet, setUserWallet] = useState<any[]>([]);
   // const [coinName, setCoinName] = useState("BNB");
   const [transferDisabled, setTransferDisabled] = useState(false);
@@ -23,9 +19,6 @@ const WalletDetails = () => {
     amount: "",
   });
   const navigate = useNavigate();
-  const location = useLocation();
-  const state = location.state as LocationState;
-  const { coinAddress } = state;
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("userToken") as string);
@@ -40,8 +33,6 @@ const WalletDetails = () => {
     //   setFormData({ ...formData, fromAddress: wallets[0].address });
     // }
 
-    setFormData({ ...formData, fromAddress: coinAddress });
-
     const getUserWallet = async () => {
       try {
         const response = await axios.get("http://localhost:3001/wallets/", {
@@ -52,6 +43,7 @@ const WalletDetails = () => {
         // const json = await response.data[0].address;
         // console.log(response.data);
         setUserWallet(response.data);
+        setFormData({ ...formData, fromAddress: response.data[0].address });
         // setCoinName(response.data[1].coin);
       } catch (error) {
         console.log(error);
@@ -68,7 +60,7 @@ const WalletDetails = () => {
     setTransferDisabled(true);
     setIsSpinning(true);
     console.log(formData);
-    
+
     const token = JSON.parse(localStorage.getItem("userToken") as string);
     if (!token) {
       navigate("/signin");
@@ -83,7 +75,7 @@ const WalletDetails = () => {
       .then((response) => {
         setMessage(response.data.message);
         console.log(response.data);
-        
+
         response.data.message.includes("was successful")
           ? navigate("/auth/transfer-success/")
           : console.log("Transfer failed.");
@@ -104,7 +96,6 @@ const WalletDetails = () => {
           setMessage("Error" + error.message);
         }
       });
-    
   };
 
   return (
@@ -118,6 +109,7 @@ const WalletDetails = () => {
               onClick={() => navigate(-1)}
             ></MdArrowBack>
           </div>
+
           <form
             action="#"
             className="wallet-form validate-form"
@@ -128,14 +120,29 @@ const WalletDetails = () => {
             <div className="from">
               <label>From</label>
 
-              <input
-              className="input"
-              name="recipient"
-              placeholder="Sender Address"
-              value={coinAddress}
-              // readOnly
-              disabled={true}
-            />
+              <div className="from_container">
+                {/* if eth/btc is selected, SiEthereum/SiBitcoin */}
+                {/* <img src={coinIcon} alt="crypto coins" /> */}
+                {/* <SiEthereum style={style}></SiEthereum> */}
+                {/* <p>{coinName}</p> */}
+                <select
+                  className="select"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      fromAddress: e.target.value.split(" ")[1],
+                    })
+                  }
+                >
+                  {userWallet.map((wallet: any, index) => {
+                    return (
+                      <option key={index}>
+                        {wallet.coin + ": " + wallet.address}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
             <label className="to" htmlFor="recipient">
               To
@@ -159,7 +166,12 @@ const WalletDetails = () => {
                 setFormData({ ...formData, amount: e.target.value })
               }
             />
-            <button className="xxf-continue-btn" type="submit" disabled={transferDisabled}>
+
+            <button
+              className="xxf-continue-btn"
+              type="submit"
+              disabled={transferDisabled}
+            >
               Transfer
             </button>
 
@@ -183,7 +195,7 @@ const WalletDetails = () => {
                 </div>
               </div>
             ) : null}
-            
+
           </form>
         </div>
       </div>
@@ -191,4 +203,4 @@ const WalletDetails = () => {
   );
 };
 
-export default WalletDetails;
+export default Transfer;

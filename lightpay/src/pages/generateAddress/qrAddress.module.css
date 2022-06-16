@@ -12,7 +12,7 @@
 }
 
 .close {
-  transform: scale(1.5);
+  transform: scale(2.0);
   cursor: pointer;
 }
 
@@ -92,11 +92,11 @@
   align-items: center;
   width: 360px;
   height: 760px;
-  border: 1px solid rgb(143, 143, 143);
+  border: 1px solid #A3A5AC;
 }
 
 .check {
-  margin-top: -210px;
+  margin-top: -190px;
 }
 
 .title {
@@ -166,13 +166,14 @@
   border-radius: 20px;
 }
 
-.errorMsg {
-  font-size: 12px;
+.copyMsg {
+  font-size: 14px;
   color: #4e515f;
   max-width: 312px;
   min-height: 30px;
   /* background-color: #01051a1a; */
   padding: 10px;
+  padding-top: 20px;
   margin-top: 5px;
   border-radius: 10px;
   text-align: center;
