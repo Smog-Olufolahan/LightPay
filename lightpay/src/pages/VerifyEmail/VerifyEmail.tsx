@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./VerifyEmail.css";
-import verifyGif from "./verifyAnim.gif";
-import errorGif from "./errorAnim.gif";
 
 const VerifyEmail = () => {
   const [message, setMessage] = useState("");
@@ -59,7 +57,7 @@ const VerifyEmail = () => {
             <div>
               <div className="img-container-verify">
                 <br></br>
-                <img src={verifyGif} alt="Account verified icon" />
+                <img src="/images/verifyAnim.gif" alt="Account verified icon" />
               </div>
               <div className="verify-message">
                 <p>{message}</p>
@@ -78,7 +76,7 @@ const VerifyEmail = () => {
             <div>
               <div className="img-container-verify">
                 <br></br>
-                <img src={errorGif} alt="Error occured icon" />
+                <img src="/images/errorAnim.gif" alt="Error occured icon" />
               </div>
               <div className="verify-message">
                 <p>{message}</p>

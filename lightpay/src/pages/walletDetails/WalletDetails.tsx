@@ -62,12 +62,19 @@ const WalletDetails = () => {
 
   // const coinIcon = coins.filter((coin: any) => coin.symbol === coinName)[0].icon;
 
+  const handleError = () => {
+    setIsSpinning(false);
+    setTransferDisabled(false);
+    console.log("Transfer failed.");
+  };
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     //setSubmitted(true);
+    setMessage("");
     setTransferDisabled(true);
     setIsSpinning(true);
-    console.log(formData);
+    // console.log(formData);
     
     const token = JSON.parse(localStorage.getItem("userToken") as string);
     if (!token) {
@@ -83,25 +90,39 @@ const WalletDetails = () => {
       .then((response) => {
         setMessage(response.data.message);
         console.log(response.data);
+        const message = response.data.message;
         
         response.data.message.includes("was successful")
-          ? navigate("/auth/transfer-success/")
-          : console.log("Transfer failed.");
+          ? navigate("/auth/transfer-success/", {
+            state: {
+              message
+            },
+          })
+          : handleError();
       })
       .catch(function (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
+          console.log("CATCH A")
           console.log(error.response.data);
+          if (error.response.data.message.includes("Invalid token")) {
+            navigate("/signin");
+          }
           setMessage(error.response.data.message);
+          handleError();
         } else if (error.request) {
           // The request was made but no response was received
+          console.log("CATCH B")
           console.log(error.request);
           setMessage(error.request);
+          handleError();
         } else {
           // Something happened in setting up the request that triggered an Error
+          console.log("CATCH C")
           console.log("Error", error.message);
           setMessage("Error" + error.message);
+          handleError();
         }
       });
     

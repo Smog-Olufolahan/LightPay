@@ -3,9 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../components/css/funds.css";
 import successGif from "../components/images/successAnim.gif";
 
+interface LocationState {
+  message: string;
+}
+
 const SuccessTransfer = () => {
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const { message } = state;
 
   const handleDone = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -20,10 +27,11 @@ const SuccessTransfer = () => {
             <div>
               <div className="fund-img-container">
                 <br></br>
-                <img src={successGif} alt="Account verified icon" />
+                <img src="/images/successAnim.gif" alt="Account verified icon" />
               </div>
               <div className="verify-message">
-                <p>Transaction Successful.</p>
+                <h3>Completed</h3>
+                <p>{message}</p>
                 <button
                   className="xf-continue-btn"
                   type="submit"

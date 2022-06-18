@@ -14,12 +14,13 @@ import Transfer from './pages/walletDetails/Transfer';
 import WalletDetails from './pages/walletDetails/WalletDetails';
 import Transaction from './pages/Transactions/Transactions';
 import SuccessTransfer from './components/SuccessTransfer';
+import StartScreen from './pages/StartScreen/StartScreen';
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Signup />} />
+      <Route path="/" element={<StartScreen />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/auth/reset-password" element={<ResetPassword />} />

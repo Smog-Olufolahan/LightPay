@@ -1,8 +1,8 @@
-import React, { useState, useEffect, FC } from "react";
-import styled from "styled-components";
-import { MdClose } from "react-icons/md";
+import React, { useState, useEffect } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import "./TransactionDeets.css";
 
 interface LocationState {
   amount: number;
@@ -15,22 +15,22 @@ interface LocationState {
   gasPrice: number;
 }
 
-export const TransactionDetails = (props: any) => {
+export const TransactionDetails = () => {
   const [userWallet, setUserWallet] = useState<any[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
   const { amount, to, from, status, transactionId, nonce, gas, gasPrice } =
     state;
-  const direction =
-  userWallet.find((val) => val.address === from) ? "Send (Outbound)" : "Receive (Inbound)";
+  const direction = userWallet.find((val) => val.address === from)
+    ? "Debit (Outbound)"
+    : "Credit (Inbound)";
 
-  const [showModal, setShowModal] = useState(true);
+  // const [showModal, setShowModal] = useState(true);
 
   // const openModal = () => {
   //   setShowModal(prev => !prev);
   // };
-
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("userToken") as string);
@@ -55,152 +55,70 @@ export const TransactionDetails = (props: any) => {
   }, []);
 
   return (
-    <>
-      {showModal ? (
-        <Background>
-          <ModalWrapper>
-            {/* showModal={showModal}> */}
-            <ModalContent>
-              <h1>{direction}</h1>
-              <h3>Status: {status}</h3>
-              <p>
-                <strong>From:&nbsp;</strong>
-                {from.slice(0, 5) + "..." + from.slice(-4)}
-              </p>
-              <p>
-                <strong>To:&nbsp;</strong>
-                {to.slice(0, 5) + "..." + to.slice(-4)}
-              </p>
-              <p>
-                <strong>Transaction ID:&nbsp;</strong>
-                {transactionId.slice(0, 10) + "..." + transactionId.slice(-5)}
-              </p>
-              <hr></hr>
-              <h3>Transaction</h3>
-              <p>
-                Nonce:<span>{nonce}</span>
-              </p>
-              <p>
-                Amount:
-                <span>
-                  <strong>{amount}&nbsp;ETH</strong>
-                </span>
-              </p>
-              <p>
-                Gas Limit (Units):<span>{gas}</span>
-              </p>
-              <p>
-                Gas Price:<span>{gasPrice}</span>
-              </p>
-              <p>
-                <strong>Total:</strong>
-                <span>
-                  <strong>{amount + 0.02}&nbsp;ETH</strong>
-                </span>
-              </p>
-            </ModalContent>
-            <CloseModalButton
-              aria-label="Close modal"
-              onClick={() => {
-                setShowModal((prev: any) => !prev);
-                navigate(-1);
-              }}
-            />
-          </ModalWrapper>
-        </Background>
-      ) : null}
-    </>
+    <section className="receipt-screen-container">
+      <div className="receipt-container">
+        <div className="wrap-receipt">
+          <IoCloseOutline className="close" onClick={() => navigate(-1)} />
+
+          <span className="receipt-title">Transaction Receipt</span>
+          <hr></hr>
+
+          <div>
+            <div className="column">
+              {userWallet.find((val) => val.address === from) ? (
+                <div>
+                  <img src="/images/arrow-up.png" alt="Debit" /> <p>{direction} - {status}</p>
+                </div>
+              ) : (
+                <div>
+                  <img src="/images/arrow-down.png" alt="Credit" />
+                  <p>
+                    {direction} - {status}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <p className="xp">
+              <strong>From:&nbsp;</strong>
+              {from.slice(0, 15) + "..." + from.slice(-5)}
+            </p>
+            <p className="xp">
+              <strong>To:&nbsp;</strong>
+              {to.slice(0, 15) + "..." + to.slice(-5)}
+            </p>
+            <p className="xp">
+              <strong>Transaction ID:&nbsp;</strong>
+              {transactionId.slice(0, 10) + "..." + transactionId.slice(-5)}
+            </p>
+            <hr></hr>
+            <p className="xh3">More Details</p>
+            <p className="xp">
+              Nonce:&nbsp;<span>{nonce}</span>
+            </p>
+            <p className="xp">
+              Amount:&nbsp;
+              <span>
+                <strong>{amount}&nbsp;ETH</strong>
+              </span>
+            </p>
+            <p className="xp">
+              Gas Limit (Units):&nbsp;<span>{gas}</span>
+            </p>
+            <p className="xp">
+              Gas Price:&nbsp;<span>{gasPrice}</span>
+            </p>
+            <p className="xp">
+              <strong>Total:&nbsp;</strong>
+              <span>
+                <strong>{amount}&nbsp;ETH</strong>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* <BottomNavBar /> */}
+      </div>
+    </section>
   );
 };
-
-const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalWrapper = styled.div`
-  width: 330px;
-  height: 450px;
-  box-shadow: 0px 5px 16px rgba(0, 0, 0, 0.2);
-  background: #fff;
-  color: #000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  z-index: 10;
-  border-radius: 10px;
-`;
-
-const ModalImg = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 0 0 10px;
-  background: #000;
-`;
-
-const ModalContent = styled.div`
-  font-family: "Outfit", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-  line-height: 1;
-  color: #141414;
-
-  h1 {
-    font-size: 24px;
-    font-weight: 600;
-    padding-bottom: 8px;
-  }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 8px 0;
-  }
-
-  p {
-    margin-bottom: 1rem;
-    font-size: 14px;
-    display: flex;
-    // overflow: ellipses;
-  }
-
-  span {
-    flex: 1;
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  hr {
-    width: 290px;
-  }
-
-  button {
-    background: #141414;
-    color: #fff;
-    border: none;
-    padding: 10px 24px;
-  }
-`;
-
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  z-index: 10;
-`;
-
-interface Props {
-  showModal: boolean;
-  setShowModal: any;
-}

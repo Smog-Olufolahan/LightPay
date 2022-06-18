@@ -8,10 +8,8 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import { TransactionDetails } from "./TransactionDetails";
 
 const searchIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
-const creditIcon =
-  "https://res.cloudinary.com/brosj/image/upload/v1654508201/down-arrow_gdtxz9.png";
-const debitIcon =
-  "https://res.cloudinary.com/brosj/image/upload/v1654508201/up-arrow_k3ay8i.png";
+const creditIcon = "/images/arrow-down.png";
+const debitIcon = "/images/arrow-up.png";
 
 const Transactions = () => {
   // const [showModal, setShowModal] = useState(false);
@@ -34,7 +32,9 @@ const Transactions = () => {
     return (
       transaction.amount.toString().includes(searchTerm.toLowerCase()) ||
       date.includes(searchTerm.toLowerCase()) ||
-      transaction.Status.includes(searchTerm.toLowerCase())
+      transaction.status.includes(searchTerm.toLowerCase()) ||
+      transaction.from.includes(searchTerm.toLowerCase()) ||
+      transaction.to.includes(searchTerm.toLowerCase())
     );
   });
 

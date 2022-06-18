@@ -120,7 +120,7 @@ const AccountsDashboard = () => {
 
           <div className="show-balance">
             <p className="total">Total Balance</p>
-            <p className="balance">${totalUSDBal}</p>
+            {isLoading === true ? <p className="balance">...</p> : <p className="balance">${totalUSDBal}</p>}
             {isLoading ? (
               <span className="retrieve-parent">
                 <p className="retrieve">{refreshStatus}</p>
