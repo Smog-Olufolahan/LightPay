@@ -11,10 +11,6 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  function refreshPage() {
-    window.location.reload();
-  }
-
   const navigate = useNavigate();
 
   const [profile, setProfile] = useState({
@@ -51,6 +47,12 @@ const Signup = () => {
       setSuccessMessage(response.data.message);
 
       setErrorMessage('');
+      setProfile({
+        email: '',
+          fullname: '',
+          mobile: '',
+          password: '',
+      })
     } catch (e: any) {
       let error = e.response.data;
 
@@ -71,6 +73,20 @@ const Signup = () => {
   return (
     <section className="container1">
       <div className="container2">
+      {successMessage.length > 0 ? (
+                <div className="success-msg">
+                  <FontAwesomeIcon
+                    onClick={() => setSuccessMessage('')}
+                    className="cancel-icon"
+                    icon={solid('circle-xmark')}
+                  />
+                  <FontAwesomeIcon
+                    className="check-icon"
+                    icon={solid('circle-check')}
+                  />{' '}
+                  {successMessage}{' '}
+                </div>
+              ) : null}
         <div className="heading">
           <h2>Sign Up</h2>
         </div>
@@ -221,21 +237,6 @@ const Signup = () => {
               >
                 Sign In
               </button>
-
-              {successMessage.length > 0 ? (
-                <div className="success-msg">
-                  <FontAwesomeIcon
-                    onClick={refreshPage}
-                    className="cancel-icon"
-                    icon={solid('circle-xmark')}
-                  />
-                  <FontAwesomeIcon
-                    className="check-icon"
-                    icon={solid('circle-check')}
-                  />{' '}
-                  {successMessage}{' '}
-                </div>
-              ) : null}
               {errorMessage.length >= 1 && errorMessage.includes('exists') ? (
                 <div className="error-msg">
                   {' '}

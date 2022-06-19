@@ -28,7 +28,7 @@ const ResetPassword = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const test = new URLSearchParams(useLocation().search);
+  const params = new URLSearchParams(useLocation().search);
 
   const handleSignin = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -47,12 +47,11 @@ const ResetPassword = () => {
       setSubmitted(true);
 
       Axios.post(
-        `http://localhost:3001/auth/reset-password/${test.get("resetToken")}`,
+        `http://localhost:3001/auth/reset-password/${params.get("resetToken")}`,
         formData
       )
         .then((response) => {
           console.log(response.data);
-          // localStorage.setItem("userToken", response.data)
           setMessage("Password updated successfully.");
         })
         .catch(function (error) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
+import { SpinnerCircular } from "spinners-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +14,9 @@ const search = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
 const Wallets = () => {
   const [userWallet, setUserWallet] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSpinning, setIsSpinning] = useState(true);
+  const [refreshStatus, setRefreshStatus] = useState("Retrieving wallets...");
   // const [walletBalances, setWalletBalances] = useState<any[]>([]);
   const navigate = useNavigate();
 
@@ -22,7 +26,8 @@ const Wallets = () => {
   };
 
   const searchedWallets = userWallet.filter((wallet) => {
-    const coinName = coins.filter((coin) => coin.symbol === wallet.coin)[0].name;
+    const coinName = coins.filter((coin) => coin.symbol === wallet.coin)[0]
+      .name;
     return (
       wallet.coin.toLowerCase().includes(searchTerm.toLowerCase()) ||
       coinName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -30,9 +35,16 @@ const Wallets = () => {
   });
 
   useEffect(() => {
+    const wallets = JSON.parse(
+      localStorage.getItem("walletsWithBal") as string
+    );
+    if (wallets) {
+      setUserWallet(wallets);
+      setIsLoading(false);
+    }
+
     // Add a request interceptor
-    let token = localStorage.getItem("userToken") as string;
-    token = JSON.parse(token);
+    const token = JSON.parse(localStorage.getItem("userToken") as string);
     axios.interceptors.request.use(function (config: AxiosRequestConfig) {
       if (config.headers === undefined) {
         config.headers = {};
@@ -42,15 +54,25 @@ const Wallets = () => {
       return config;
     });
 
+    // const
     const getWallets = async () => {
       try {
         const response = await axios.get(
           "http://localhost:3001/wallets/userwallet"
         );
+        setIsLoading(false);
         setUserWallet(response.data);
         console.log(response.data);
-      } catch (error) {
+      } catch (error: any) {
+        setTimeout(() => {
+          setRefreshStatus("Network error. Unable to retrieve wallets.");
+          setIsSpinning(false);
+        }, 2000);
         console.log(error);
+        // if (error.response.status === 400) {
+        //   console.log("Session expired, Login!");
+        //   navigate("/signin/");
+        // }
       }
     };
 
@@ -67,8 +89,12 @@ const Wallets = () => {
             coin,
             balance: walletBalance.data.balance,
           });
-        } catch (error) {
+        } catch (error: any) {
           console.log(error);
+          // if (error.response.status === 400) {
+          //   console.log("Session expired, Login!");
+          //   navigate("/signin/");
+          // }
         }
       }
       console.log("All Balances", walletsWithBal);
@@ -80,8 +106,12 @@ const Wallets = () => {
     //   .then((response) => {
     //     // console.log(response.data.coins);
     //     setCoinList(response.data.coins);
-    //   }).catch((err) => {
+    //   }).catch((err: any) => {
     //     console.log(err);
+    //   if (error.response.status === 400) {
+    // console.log("Session expired, Login!");
+    // navigate("/signin/");
+    // }
     //   })
 
     getWallets();
@@ -97,7 +127,7 @@ const Wallets = () => {
             <span className="add-wallet">Add Wallet</span>
           </div>
 
-          <span className="wallet-title">Wallets</span>
+          <span className="wallet-title-main">Wallets</span>
 
           <div
             className="wrap-input-wallet"
@@ -115,6 +145,21 @@ const Wallets = () => {
             />
           </div>
 
+          {isLoading ? (
+            <span className="rtrv-parent">
+              <p className="rtrv">{refreshStatus}</p>
+              <SpinnerCircular
+                className="wallet-spinner"
+                enabled={isSpinning}
+                size={15}
+                thickness={200}
+                speed={100}
+                color="#36ad47"
+                secondaryColor="rgba(255, 255, 255, 1)"
+              />
+            </span>
+          ) : null}
+
           <div className="wrap-wallet-currency">
             {searchedWallets.map((wallet, index) => {
               const coinIcon = coins.filter(
@@ -125,11 +170,13 @@ const Wallets = () => {
               )[0].name;
               const coinSymbol = wallet.coin;
               const coinAddress = wallet.address;
-              const coinBalance = wallet.balance;
+              const coinBalance = Number(wallet.balance.toFixed(5));
               const coinPrice = coins.filter(
                 (coin) => coin.symbol === wallet.coin
               )[0].price;
-              const coinBalanceUSD = coinBalance * coinPrice;
+              const coinBalanceUSD = (
+                Number(coinBalance) * Number(coinPrice)
+              ).toFixed(2);
 
               return (
                 <div key={index}>
@@ -167,7 +214,7 @@ const Wallets = () => {
                         {/* <h5>0</h5> */}
                       </div>
                       <div className="bal-usd">
-                        <h5>0 USD</h5>
+                        <h5>${coinBalanceUSD}</h5>
                       </div>
                     </div>
                   </div>
@@ -175,9 +222,8 @@ const Wallets = () => {
               );
             })}
           </div>
-
-          <BottomNavBar />
         </div>
+        <BottomNavBar />
       </div>
     </div>
   );

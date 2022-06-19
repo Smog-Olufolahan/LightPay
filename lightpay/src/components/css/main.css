@@ -16,7 +16,7 @@
   padding: 20px;
   opacity: 100%;
   background-color: #fff;
-  border: 1px solid rgb(143, 143, 143);
+  border: 1px solid #A3A5AC;
 }
 
 .wrap-signin {
@@ -77,6 +77,7 @@
   position: absolute;
   margin-left: 90%;
   margin-top: -45px;
+  cursor: pointer;
 }
 
 .text-right {

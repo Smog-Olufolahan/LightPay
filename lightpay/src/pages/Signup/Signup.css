@@ -17,7 +17,7 @@
   align-items: center;
   width: 360px;
   height: 760px;
-  border: 1px solid rgb(143, 143, 143);
+  border: 1px solid #A3A5AC;
   /* padding-top: 2rem; */
   padding-left: 10px;
 }
@@ -90,48 +90,43 @@
   background-color: #01051a;
   z-index: 10;
   width: 360px;
-  height: 760px;
-  padding: 27% 10px 0 10px;
-  border-radius: 10px;
-  margin-top: -43%;
-  margin-left: -2%;
+  margin-left: -10px;
+  height: 96%;
+  padding: 31% 10px 0 10px;
 }
 
 .check-icon {
   font-size: 100px;
   position: absolute;
-  margin-top: -50%;
-  margin-left: 25%;
+  margin-left: 26%;
+  margin-top: -140px
 }
 .cancel-icon {
   font-size: 25px;
   position: absolute;
-  margin-top: -100%;
-  margin-left: 72%;
+  margin-top: -117%;
+  margin-left: 80%;
   cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
   .success-msg {
-    font-size: 18px;
+    font-size: 19px;
     color: #fff;
     font-weight: 600;
     position: absolute;
     text-align: center;
     align-self: center;
     background-color: #01051a;
-    z-index: 10;
-    width: 380px;
-    height: 810px;
-    padding: 120% 10px 0 10px;
-    border-radius: 10px;
-    margin-top: -160%;
-    margin-left: -10%;
+    z-index: 10px;
+    width: 360px;
+    height: 760px;
+    margin-left: -10px;
+    padding: 85% 10px 0 10px;
   }
   .check-icon {
     font-size: 100px;
     position: absolute;
-    margin-top: -50%;
     margin-left: 30%;
   }
   .cancel-icon {
@@ -194,8 +189,8 @@
 }
 
 .togglebtn {
-  top: 25px;
-  right: 40px;
+  top: 20px;
+  right: 30px;
   position: absolute;
   cursor: pointer;
   border: none;

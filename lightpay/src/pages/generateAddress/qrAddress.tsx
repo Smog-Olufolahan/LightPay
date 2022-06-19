@@ -16,7 +16,7 @@ const copyIcon = <FontAwesomeIcon icon={faCopy} />;
 
 const GenerateQr = () => {
   const [qrValue, setQrValue] = useState([] as any);
-  const [copyMessage, setErrorMessage] = useState('');
+  const [copyMessage, setCopyMessage] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,7 +30,10 @@ const GenerateQr = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(coinAddress);
-    setErrorMessage("Address copied to clipboard.");
+    setCopyMessage("Address copied to clipboard.");
+    setTimeout(() => {
+      setCopyMessage("");
+    }, 4000);
   }
 
   
@@ -45,8 +48,8 @@ const GenerateQr = () => {
           <div className={styles.topIcons}>
             <IoCloseOutline className={styles.close} onClick={() => navigate(-1)}/>
             <div className={styles.refreshIcon}>
-              <IoRefresh />
-              <p className={styles.para}>Refresh</p>
+              {/* <IoRefresh />
+              <p className={styles.para}>Refresh</p> */}
             </div>
           </div>
           <h3 className={styles.title}>
@@ -75,13 +78,7 @@ const GenerateQr = () => {
               className={styles.qrContainer}
             />
           </div>
-
-          {copyMessage.length >= 1 && copyMessage.includes('Address copied to clipboard.') ? (
-                <div className={styles.errorMsg}>
-                  {' '}
-                  {copyMessage}{' '}
-                </div>
-              ) : null}
+          <div className={styles.copyMsg}>&nbsp;{copyMessage}&nbsp;</div>
         </div>
       </div>
     </div>
